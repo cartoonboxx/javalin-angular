@@ -1,0 +1,160 @@
+<header class="header">
+  <nav class="header__nav">
+    <div class="site-container container">
+      <ul>
+        <a routerLink="/"><li>Главная</li></a>
+        <a routerLink="about/"><li>О нас</li></a>
+        <a routerLink="contacts/"><li>Контакты</li></a>
+      </ul>
+      <div class="info">
+        <div class="item">
+          <img src="icons/phone.svg" alt="">
+          <p>8 (964) 89 99 119</p>
+        </div>
+        <div class="item">
+          <img src="icons/delivery.svg" alt="notimg">
+          <a>Доставка</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="search-block">
+    <div class="site-container container search">
+      <input type="checkbox" id="menu" name="menu" class="m-menu__checkbox">
+      <label class="m-menu__toggle" for="menu">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </label>
+      <label class="m-menu__overlay" for="menu"></label>
+
+      <div class="m-menu">
+        <div class="m-menu__header">
+          <span>Меню</span>
+          <label class="m-menu__toggle circle" for="menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BFBFBF" stroke-width="2" stroke-linecap="butt" stroke-linejoin="arcs">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </label>
+        </div>
+        <ul>
+          <a>
+            <li>
+              <img src="icons/home.svg" alt="">
+              <label>Главная</label>
+            </li>
+          </a>
+          <a>
+            <li>
+              <img src="icons/info.svg" alt="">
+              <label>О нас</label>
+            </li>
+          </a>
+          <a>
+            <li>
+              <img src="icons/mail-dog.svg" alt="">
+              <label>Контакты</label>
+            </li>
+          </a>
+        </ul>
+        <h2>Категории</h2>
+        <ul>
+          <a>
+            <li>
+              <img src="icons/categories/kitchen-icon.svg" alt="">
+              <label>Кухни</label>
+            </li>
+          </a>
+          <a>
+            <li>
+              <img src="icons/categories/bedroom-icon.svg" alt="">
+              <label>Спальни</label>
+            </li>
+          </a>
+          <a>
+            <li>
+              <img src="icons/categories/livingroom-icon.svg" alt="">
+              <label>Гостинные</label>
+            </li>
+          </a>
+          <a>
+            <li>
+              <img src="icons/categories/closet-icon.svg" alt="">
+              <label>Прихожие</label>
+            </li>
+          </a>
+          <a>
+            <li>
+              <img src="icons/categories/office-icon.svg" alt="">
+              <label>Офисная мебель</label>
+            </li>
+          </a>
+          <a>
+            <li>
+              <img src="icons/categories/childrensroom-icon.svg" alt="">
+              <label>Детская</label>
+            </li>
+          </a>
+        </ul>
+      </div>
+      <a routerLink="/" class="logo"><img src="LOGO.svg" alt=""></a>
+      <div class="search-block__input">
+        <img src="icons/search-icon.svg" alt="">
+        <input type="text" placeholder="Поиск">
+      </div>
+      <div class="search-block__delivery">
+        <img src="icons/delivery-black.svg" alt="notimg">
+        <a>Доставка</a>
+      </div>
+      <div class="search-block__bag">
+        <img src="icons/bag.svg" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="categories">
+    <div class="site-container">
+      <ul class="container">
+        <a class="item">
+          <img src="icons/categories/kitchen-icon.svg" alt="">
+          <li>Кухни</li>
+        </a>
+        <a class="item">
+          <img src="icons/categories/bedroom-icon.svg" alt="">
+          <li>Спальни</li>
+        </a>
+        <a class="item">
+          <img src="icons/categories/livingroom-icon.svg" alt="">
+          <li>Гостиные</li>
+        </a>
+        <a class="item">
+          <img src="icons/categories/closet-icon.svg" alt="">
+          <li>Прихожие</li>
+        </a>
+        <a class="item">
+          <img src="icons/categories/office-icon.svg" alt="">
+          <li>Офисная мебель</li>
+        </a>
+        <a class="item">
+          <img src="icons/categories/childrensroom-icon.svg" alt="">
+          <li>Детская</li>
+        </a>
+        <a class="item action">
+          <li>Акция</li>
+        </a>
+        <div class="kebab-wrapper">
+          <input type="checkbox" id="menu-toggle" class="kebab-toggle" />
+          <label for="menu-toggle" class="kebab-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+          <div class="kebab-menu">
+            <a href="#">Новинки</a>
+            <a href="#">Шкафы</a>
+            <a href="#">Матрасы</a>
+            <a href="#">Мягкая мебель</a>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,153 @@
+@use 'mixins' as *;
+
+.footer {
+  width: 100%;
+
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.03);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .footer-collection {
+    display: flex;
+  }
+
+  &__navs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include mobile-view() {
+      display: none;
+    }
+
+    h1 {
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    &-list {
+      display: flex;
+      gap: 50px;
+
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        font-size: 14px;
+        color: #414141;
+      }
+    }
+
+    &-footer {
+      display: flex;
+      gap: 30px;
+      color: #414141;
+      font-size: 14px;
+      a:nth-child(1) {
+        color: #D74444;
+      }
+    }
+  }
+
+  &__contacts {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    @include mobile-view {
+      flex-direction: row;
+      width: 100%;
+      align-items: flex-start;
+    }
+
+    h1 {
+      @include mobile-view {
+        font-size: 35px;
+        margin-bottom: 11px;
+      }
+      padding-top: 0;
+      font-weight: 900;
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    p {
+
+      width: 100%;
+      word-break: inherit;
+      @include mobile-view {
+        padding-top: 10px;
+        font-size: 10px;
+      }
+      color: #414141;
+      text-align: right;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    &-socials {
+      display: flex;
+      gap: 30px;
+
+
+    }
+  }
+
+  .contacts-other {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mobile-view {
+      .links {
+        display: none;
+      }
+    }
+
+    .info {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      gap: 30px;
+
+      @include mobile-view {
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .item {
+        @include mobile-view {
+          flex: 1 1 auto;
+          font-size: 10px;
+          justify-content: flex-end;
+          &:nth-child(1) {
+            flex: 1 1 100%;
+          }
+
+          &:nth-child(2) {
+            justify-content: flex-start;
+          }
+        }
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #414141;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

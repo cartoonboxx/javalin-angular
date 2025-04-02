@@ -1,0 +1,23 @@
+@mixin to-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin laptop-view() {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin mobile-view() {
+  @media screen and (max-width: 684px) {
+    @content;
+  }
+}
+
+@mixin desktop-view() {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
