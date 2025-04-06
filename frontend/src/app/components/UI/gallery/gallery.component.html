@@ -1,0 +1,23 @@
+<div class="sofa-component">
+  <div class="main-image">
+    <div class="navigation-buttons">
+      <img
+        [src]="selectedImage"
+        alt="Главное изображение дивана"
+      />
+    </div>
+  </div>
+
+  <div class="thumbnails">
+    <button (click)="prevImage()" [disabled]="currentIndex === 0">&#10094;</button>
+    <div
+      class="thumbnail"
+      *ngFor="let img of images; let i = index"
+      [class.active]="i === currentIndex"
+      (click)="selectImage(i)"
+    >
+      <img [src]="img.thumb" alt="Миниатюра" />
+    </div>
+    <button (click)="nextImage()" [disabled]="currentIndex === images.length - 1">&#10095;</button>
+  </div>
+</div>

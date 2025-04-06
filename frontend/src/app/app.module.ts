@@ -8,6 +8,8 @@ import { FooterComponent } from './components/UI/footer/footer.component';
 import { IndexComponent } from './components/index/index.component';
 import { SliderComponent } from './components/UI/slider/slider.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { GalleryComponent } from './components/UI/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     FooterComponent,
     IndexComponent,
     SliderComponent,
-    ContactsComponent
+    ContactsComponent,
+    DetailComponent,
+    GalleryComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

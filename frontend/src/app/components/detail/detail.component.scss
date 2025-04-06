@@ -1,0 +1,299 @@
+@use 'mixins' as *;
+
+.main {
+  padding: 30px 0;
+  @include to-center();
+
+  .navigation-route {
+    @include laptop-view() {
+      padding: 0 30px;
+    }
+  }
+
+  .container {
+    gap: 30px;
+
+    flex-direction: column;
+
+    @include desktop-view() {
+      flex-direction: row;
+    }
+
+    @include laptop-view() {
+      padding: 30px 25px;
+    }
+
+    .description {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      @include desktop-view() {
+        width: 50%;
+      }
+
+      .stars {
+        display: flex;
+        gap: 3px;
+      }
+
+      h1 {
+        color: #414141;
+        font-weight: 500;
+        font-size: 28px;
+      }
+
+      a {
+        color: #686868;
+        font-weight: 400;
+        font-size: 14px;
+      }
+
+      .section {
+        display: flex;
+        gap: 30px;
+
+        span {
+          font-weight: 500;
+          font-size: 28px;
+          color: var(--black-02)
+        }
+
+        button {
+          padding: 12px 50px;
+          background-color: #245462;
+          color: white;
+          font-size: 14px;
+          border: none;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .input {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+
+          &:nth-child(2) {
+            input {
+              width: calc(100% + 5px);
+              padding: 7px 10px;
+              font-weight: 400;
+
+            }
+          }
+
+          label {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--black-02)
+          }
+
+          input {
+            width: 30px;
+            height: 30px;
+            box-shadow: 0 2px 4px #00000012;
+            outline: none;
+            border: none;
+            text-align: center;
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h4 {
+          font-size: 14px;
+          font-weight: 400;
+        }
+
+        p {
+          line-height: 149%;
+          font-size: 14px;
+          color: #686868;
+        }
+      }
+    }
+  }
+  .hits {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    width: 100%;
+
+    .section-title {
+      font-size: 16px;
+      color: var(--black-02);
+      padding-left: 25px;
+      font-weight: 400;
+
+    }
+
+    .items {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      @include desktop-view() {
+        gap: 30px;
+        padding-bottom: 150px;
+      }
+
+      .item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+        width: calc(25% - 30px);
+
+        text-decoration: none;
+        color: #414141;
+
+        @include laptop-view() {
+          width: calc(33.33% - 30px);
+        }
+
+        @include mobile-view() {
+          width: calc(50% - 15px);
+          gap: 15px;
+          padding: 0;
+        }
+
+        background: white;
+        box-shadow: 0 0 0 transparent;
+        transition: box-shadow 0.3s ease;
+
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        img {
+          padding: 42px 12px;
+
+          @include mobile-view() {
+            padding: 10px 10px;
+          }
+        }
+
+        h1 {
+          font-size: 16px;
+          font-weight: 500;
+          @include laptop-view() {
+            font-size: 18px;
+          }
+        }
+
+        p {
+          font-weight: 400;
+          font-size: 11px;
+
+          @include laptop-view() {
+            font-size: 14px;
+          }
+        }
+
+        span {
+          font-weight: 500;
+          font-size: 16px;
+          color: #414141;
+
+          @include laptop-view() {
+            font-size: 18px;
+          }
+        }
+
+        .extra {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          background: white;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s ease, transform 0.1s ease;
+          transform: translateY(10px);
+          z-index: 10;
+          padding: 16px 20px;
+          box-shadow: 0px 12px 20px #0000001A; // визуально продолжаем основной box-shadow
+
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          @include laptop-view() {
+            display: none;
+          }
+
+          @include mobile-view() {
+            display: none;
+          }
+
+          p {
+            font-size: 14px;
+            font-weight: 400;
+          }
+
+          .sizes {
+            display: flex;
+            justify-content: center;
+            gap: 11px;
+            font-weight: 400;
+
+            .size {
+              width: auto;
+              text-transform: uppercase;
+              font-size: 9px;
+
+              p {
+                color: #C4C4C4;
+                font-size: 12px;
+              }
+
+              span {
+                color: #414141;
+                font-size: 12px;
+              }
+            }
+          }
+
+          button {
+            margin-top: 10px;
+            padding: 13px;
+            color: white;
+            background-color: #245462;
+            border: none;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        &:hover {
+          z-index: 20; // чтобы карточка вылезла поверх других
+          box-shadow: 0 1px 9px #0000001C;
+
+          .extra {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(100%);
+          }
+        }
+      }
+    }
+  }
+
+}

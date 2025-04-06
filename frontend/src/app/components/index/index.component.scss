@@ -36,6 +36,9 @@
       padding: 20px;
       width: calc(25% - 30px);
 
+      text-decoration: none;
+      color: #414141;
+
       @include laptop-view() {
         width: calc(33.33% - 30px);
       }
