@@ -1,0 +1,20 @@
+<div class="sort-container">
+  <button class="sort-button" (click)="toggleMenu()">
+    <p>Сортировать</p>
+    <div class="sort-icon">
+      <img src="icons/dropdown ico.svg" alt="">
+    </div>
+  </button>
+
+  <div class="dropdown" [class.active]="isOpen">
+    <div class="dropdown-item">
+      <p>по убыванию цены</p>
+    </div>
+    <div class="dropdown-item">
+      <p>по возрастанию цены</p>
+    </div>
+    <div class="dropdown-item">
+      <p>по популярности</p>
+    </div>
+  </div>
+</div>

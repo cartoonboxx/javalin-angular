@@ -1,0 +1,280 @@
+@use 'mixins' as *;
+
+.main {
+  @include to-center();
+  flex-direction: column;
+
+  .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  .endtitle {
+    padding: 150px 0 ;
+  }
+
+  .container {
+    @include to-center();
+    width: 100%;
+
+    @include mobile-view() {
+      flex-direction: column-reverse;
+    }
+
+    .info {
+      padding: 100px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      @include mobile-view() {
+        width: 100%;
+        padding: 15px;
+      }
+
+
+      h1 {
+        font-size: 12px;
+        font-weight: 400;
+        color: #245462;
+      }
+
+      h2 {
+        font-size: 24px;
+        color: var(--black-02);
+        font-weight: 400;
+
+        @include mobile-view() {
+          font-size: 20px;
+        }
+      }
+
+      p {
+        color: #686868;
+        font-size: 14px;
+
+        @include mobile-view() {
+          line-height: 140%;
+        }
+      }
+    }
+
+    .img {
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 50%;
+
+      @include mobile-view() {
+        width: 100%;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .additions {
+    @include to-center();
+    flex-direction: column;
+    gap: 90px;
+    padding-bottom: 95px;
+
+    @include mobile-view() {
+      padding-top: 30px;
+      gap: 30px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: var(--black-02);
+      font-weight: 400;
+    }
+
+    .proses {
+      display: flex;
+      gap: 64px;
+      flex-wrap: wrap;
+      height: 100%;
+
+      @include mobile-view() {
+        padding: 15px;
+      }
+
+      .pros {
+        display: flex;
+        gap: 30px;
+        width: calc(50% - 64px);
+        height: 100%;
+
+        @include mobile-view() {
+          width: 100%;
+
+          gap: 15px;
+
+          img {
+            width: 45px;
+            height: 45px;
+          }
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          h2 {
+            color: var(--black-02);
+            font-size: 18px;
+            font-weight: 400;
+          }
+
+          p {
+            color: #686868;
+            font-size: 14px;
+            font-weight: 400;
+            width: auto;
+          }
+        }
+      }
+    }
+
+    .info-blocks {
+      display: flex;
+      gap: 40px;
+      padding: 70px;
+      flex-wrap: wrap;
+      padding-bottom: 0;
+
+      @include mobile-view() {
+        padding: 25px;
+        gap: 31px;
+        flex-direction: column;
+      }
+
+      &-item {
+        width: calc(50% - 40px);
+        padding: 25px;
+        background-color: #F4F4F4;
+
+        @include mobile-view() {
+          width: 100%;
+        }
+
+        img {
+          padding: 13px;
+          position: absolute;
+          transform: translate(-100%, -100%);
+          background-color: white;
+          border-radius: 50%;
+        }
+
+        h1 {
+          font-size: 18px;
+          font-weight: 400;
+          color: var(--black-02);
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 140%;
+          color: #686868;
+        }
+      }
+    }
+
+  }
+
+  .more-pros {
+    @include to-center();
+    padding: 80px;
+    background-color: #D7E8ED;
+    width: 100%;
+
+    @include mobile-view() {
+      padding: 50px 20px;
+    }
+
+    .desk {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 65px;
+
+      @include mobile-view() {
+        gap: 30px
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 600px;
+        gap: 15px;
+
+        .stick {
+          width: 50px;
+          height: 1px;
+          background-color: #245462;
+        }
+        h1 {
+          text-align: center;
+          font-size: 18px;
+          font-weight: 400;
+          color: var(--black-02);
+        }
+
+        p {
+          font-size: 14px;
+          color: #686868;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .no-blue {
+    background-color: white;
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      .item {
+        width: calc(33% - 20px);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        @include mobile-view() {
+          width: 100%;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+
+          font-weight: 400;
+          font-size: 14px;
+
+          h1 {
+            color: var(--black-02);
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 140%;
+          }
+
+          p {
+            font-size: 14px;
+            line-height: 140%;
+          }
+        }
+      }
+    }
+  }
+}

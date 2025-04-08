@@ -1,3 +1,3 @@
-<app-header></app-header>
+<app-header *ngIf="!isAdminPanel"></app-header>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="!isAdminPanel"></app-footer>

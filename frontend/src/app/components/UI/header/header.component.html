@@ -2,9 +2,7 @@
   <nav class="header__nav">
     <div class="site-container container">
       <ul>
-        <a routerLink="/"><li>Главная</li></a>
-        <a routerLink="about/"><li>О нас</li></a>
-        <a routerLink="contacts/"><li>Контакты</li></a>
+        <a *ngFor="let link of mainLinks" routerLink="{{ link.link }}"><li>{{ link.title }}</li></a>
       </ul>
       <div class="info">
         <div class="item">
@@ -37,83 +35,41 @@
           </label>
         </div>
         <ul>
-          <a>
+          <a *ngFor="let link of mainLinks" routerLink="{{ link.link }}">
             <li>
-              <img src="icons/home.svg" alt="">
-              <label>Главная</label>
-            </li>
-          </a>
-          <a>
-            <li>
-              <img src="icons/info.svg" alt="">
-              <label>О нас</label>
-            </li>
-          </a>
-          <a>
-            <li>
-              <img src="icons/mail-dog.svg" alt="">
-              <label>Контакты</label>
+              <img src="{{ link.image }}" alt="">
+              <label>{{ link.title }}</label>
             </li>
           </a>
         </ul>
         <h2>Категории</h2>
         <ul>
-          <a>
+          <a *ngFor="let cat of categories" routerLink="products/{{ cat.link }}">
             <li>
-              <img src="icons/categories/kitchen-icon.svg" alt="">
-              <label>Кухни</label>
-            </li>
-          </a>
-          <a>
-            <li>
-              <img src="icons/categories/bedroom-icon.svg" alt="">
-              <label>Спальни</label>
-            </li>
-          </a>
-          <a>
-            <li>
-              <img src="icons/categories/livingroom-icon.svg" alt="">
-              <label>Гостинные</label>
-            </li>
-          </a>
-          <a>
-            <li>
-              <img src="icons/categories/closet-icon.svg" alt="">
-              <label>Прихожие</label>
-            </li>
-          </a>
-          <a>
-            <li>
-              <img src="icons/categories/office-icon.svg" alt="">
-              <label>Офисная мебель</label>
-            </li>
-          </a>
-          <a>
-            <li>
-              <img src="icons/categories/childrensroom-icon.svg" alt="">
-              <label>Детская</label>
+              <img [src]="cat.image" alt="">
+              <label>{{ cat.title }}</label>
             </li>
           </a>
         </ul>
       </div>
       <a routerLink="/" class="logo"><img src="LOGO.svg" alt=""></a>
-      <div class="search-block__input">
+      <form action="search/" class="search-block__input">
         <img src="icons/search-icon.svg" alt="">
-        <input type="text" placeholder="Поиск">
-      </div>
+        <input type="text" placeholder="Поиск" name="q" [value]="inputValue">
+      </form>
       <div class="search-block__delivery">
         <img src="icons/delivery-black.svg" alt="notimg">
         <a>Доставка</a>
       </div>
-      <div class="search-block__bag">
+      <a routerLink="/basket/" class="search-block__bag">
         <img src="icons/bag.svg" alt="">
-      </div>
+      </a>
     </div>
   </div>
   <div class="categories">
     <div class="site-container">
       <ul class="container">
-        <a class="item">
+        <a class="item" routerLink="products/kitchen">
           <img src="icons/categories/kitchen-icon.svg" alt="">
           <li>Кухни</li>
         </a>

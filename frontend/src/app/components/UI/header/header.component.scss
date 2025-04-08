@@ -3,6 +3,7 @@
 .header {
   display: flex;
   flex-direction: column;
+  top: 0;
 
   gap: 20px;
 
@@ -110,8 +111,9 @@
       -webkit-transition: transform 0.35s;
       transition: transform 0.35s;
       z-index: 100;
-      overflow: hidden;
+      //overflow: hidden;
       background-color: #F9F9F9;
+      overflow-y: auto;
 
       &__overlay {
         background-color: rgba(103, 103, 103, 0.5);
@@ -172,8 +174,12 @@
       }
       ul {
         height: auto;
-        //overflow-y: auto;
         font-family: "Roboto", sans-serif;
+
+        a {
+          text-decoration: none;
+          color: var(--black-02);
+        }
 
         li {
           padding: 0 28px;
@@ -301,6 +307,8 @@
       }
 
       .item {
+        text-decoration: none;
+        color: var(--black-02);
         @include to-center();
         gap: 10px;
         font-size: 16px;

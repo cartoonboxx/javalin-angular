@@ -10,6 +10,12 @@ import { SliderComponent } from './components/UI/slider/slider.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { GalleryComponent } from './components/UI/gallery/gallery.component';
+import { AboutComponent } from './components/about/about.component';
+import { CategoryComponent } from './components/category/category.component';
+import { DropdownComponent } from './components/UI/dropdown/dropdown.component';
+import { SearchComponent } from './components/search/search.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +27,13 @@ import { GalleryComponent } from './components/UI/gallery/gallery.component';
     ContactsComponent,
     DetailComponent,
     GalleryComponent,
-    GalleryComponent
+    GalleryComponent,
+    AboutComponent,
+    CategoryComponent,
+    DropdownComponent,
+    SearchComponent,
+    BasketComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

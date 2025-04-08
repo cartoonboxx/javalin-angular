@@ -1,51 +1,96 @@
 <main class="main">
   <div class="site-container">
     <ul class="navigation-route">
-      <a><li>Главная</li></a>
+      <a routerLink="/"><li>Главная</li></a>
       /
-      <a><li>Гостинные</li></a>
-      /
-      <a><li>Мягкая мебель</li></a>
-      /
-      <a><li>Диваны</li></a>
+      <a routerLink="basket/"><li>Корзина</li></a>
     </ul>
-
-    <div class="container">
-      <app-gallery></app-gallery>
-      <div class="description">
-        <div class="stars">
-          <img src="icons/star full.svg" alt="">
-          <img src="icons/star full.svg" alt="">
-          <img src="icons/star full.svg" alt="">
-          <img src="icons/star full.svg" alt="">
-          <img src="icons/star not full.svg" alt="">
-        </div>
-        <h1>Динс Velvet Yellow</h1>
-        <a routerLink="/products/kitchen">Диваны</a>
-        <div class="section">
-          <span>4 690₽</span>
-          <button>Купить</button>
-        </div>
-        <div class="section">
-          <div class="input">
-            <label for="count">Количество</label>
-            <input type="text" id="count" name="count" value="1">
-          </div>
-          <div class="input">
-            <label for="size">Размер (Д × Ш × В)</label>
-            <input type="text" id="size" name="size" value="218 СМ × 95 СМ × 90 СМ" readonly>
-          </div>
+    <div class="header">
+      <h2>Ваша корзина</h2>
+      <span>4 предмета</span>
+    </div>
+    <div class="cart">
+      <div class="cart-item">
+        <div class="img">
+          <img src="cart/cart 1.png" alt="">
         </div>
         <div class="info">
-          <h4>Описание</h4>
-          <p>Лаконичные линии и простые формы, безупречный стиль и индивидуальность – все это диван «Динс». Сдержанный скандинавский дизайн украсит любую современную обстановку. Элегантность, комфорт и функциональность, собранные воедино – «Динс» просто создан для размеренного отдыха в кругу семьи или компании друзей!</p>
+          <div class="data">
+            <h1>Кускен Navy Blue</h1>
+            <div class="description">
+              <p>Количество: <span>1</span></p>
+              <p>Размер(Ш×Д×В): <span>218 СМ × 95 СМ × 90 СМ</span></p>
+            </div>
+          </div>
+          <h2 class="price">16 990₽</h2>
         </div>
+        <button class="delete">
+          <img src="icons/delete.svg" alt="">
+        </button>
+      </div>
+      <div class="cart-item">
+        <div class="img">
+          <img src="cart/cart 2.png" alt="">
+        </div>
+        <div class="info">
+          <div class="data">
+            <h1>Кускен Navy Blue</h1>
+            <div class="description">
+              <p>Количество: <span>1</span></p>
+              <p>Размер(Ш×Д×В): <span>218 СМ × 95 СМ × 90 СМ</span></p>
+            </div>
+          </div>
+          <h2 class="price">16 990₽</h2>
+        </div>
+        <button class="delete">
+          <img src="icons/delete.svg" alt="">
+        </button>
+      </div>
+      <div class="cart-item">
+        <div class="img">
+          <img src="cart/cart 3.png" alt="">
+        </div>
+        <div class="info">
+          <div class="data">
+            <h1>Кускен Navy Blue</h1>
+            <div class="description">
+              <p>Количество: <span>1</span></p>
+              <p>Размер(Ш×Д×В): <span>218 СМ × 95 СМ × 90 СМ</span></p>
+            </div>
+          </div>
+          <h2 class="price">16 990₽</h2>
+        </div>
+        <button class="delete">
+          <img src="icons/delete.svg" alt="">
+        </button>
+      </div>
+      <div class="cart-item">
+        <div class="img">
+          <img src="cart/cart 1.png" alt="">
+        </div>
+        <div class="info">
+          <div class="data">
+            <h1>Кускен Navy Blue</h1>
+            <div class="description">
+              <p>Количество: <span>1</span></p>
+              <p>Размер(Ш×Д×В): <span>218 СМ × 95 СМ × 90 СМ</span></p>
+            </div>
+          </div>
+          <h2 class="price">16 990₽</h2>
+        </div>
+        <button class="delete">
+          <img src="icons/delete.svg" alt="">
+        </button>
       </div>
     </div>
-    <div class="hits">
-      <h1 class="section-title">Хиты продаж</h1>
+    <div class="footer">
+      <p>Итоговая стоимость: <span>69 960₽</span></p>
+      <button>Оформить заказ</button>
+    </div>
+    <section class="you-like-section">
+      <h2>Вам может понравиться</h2>
       <div class="items">
-        <a class="item" routerLink="products/chairs/1">
+        <a class="item" routerLink="/products/chairs/1">
           <img src="assets/chair.png" alt="img">
           <h1>Валенсия Beige</h1>
           <p>Барные стулья</p>
@@ -71,7 +116,7 @@
             <button>Добавить в корзину</button>
           </div>
         </a >
-        <a class="item" routerLink="products/chairs/1">
+        <a class="item" routerLink="/products/chairs/1">
           <img src="assets/chair.png" alt="img">
           <h1>Валенсия Beige</h1>
           <p>Барные стулья</p>
@@ -97,7 +142,7 @@
             <button>Добавить в корзину</button>
           </div>
         </a >
-        <a class="item" routerLink="products/chairs/1">
+        <a class="item" routerLink="/products/chairs/1">
           <img src="assets/chair.png" alt="img">
           <h1>Валенсия Beige</h1>
           <p>Барные стулья</p>
@@ -123,7 +168,7 @@
             <button>Добавить в корзину</button>
           </div>
         </a >
-        <a class="item" routerLink="products/chairs/1">
+        <a class="item" routerLink="/products/chairs/1">
           <img src="assets/chair.png" alt="img">
           <h1>Валенсия Beige</h1>
           <p>Барные стулья</p>
@@ -149,33 +194,7 @@
             <button>Добавить в корзину</button>
           </div>
         </a >
-        <a class="item" routerLink="products/chairs/1">
-          <img src="assets/chair.png" alt="img">
-          <h1>Валенсия Beige</h1>
-          <p>Барные стулья</p>
-          <span>2 300₽</span>
-          <div class="extra">
-            <p>Размеры</p>
-            <div class="sizes">
-              <div class="size">
-                <p>Ширина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Глубина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Высота</p>
-                <span>77 см</span>
-              </div>
-            </div>
-            <button>Добавить в корзину</button>
-          </div>
-        </a >
-        <a class="item" routerLink="products/chairs/1">
+        <a class="item" routerLink="/products/chairs/1">
           <img src="assets/chair.png" alt="img">
           <h1>Валенсия Beige</h1>
           <p>Барные стулья</p>
@@ -202,6 +221,6 @@
           </div>
         </a >
       </div>
-    </div>
+    </section>
   </div>
 </main>

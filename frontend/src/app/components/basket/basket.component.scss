@@ -1,154 +1,198 @@
 @use 'mixins' as *;
 
 .main {
-  padding: 30px 0;
   @include to-center();
 
   .navigation-route {
-    @include laptop-view() {
-      padding: 0 30px;
+    padding: 20px 0;
+  }
+
+  padding: 0 15px;
+
+  @include desktop-view() {
+    padding: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+
+    h2 {
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--black-02)
+    }
+
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--black-02)
     }
   }
 
-  .container {
-    gap: 30px;
-
+  .cart {
+    display: flex;
     flex-direction: column;
+    padding: 20px 0;
+    gap: 20px;
 
-    @include desktop-view() {
-      flex-direction: row;
-    }
-
-    @include laptop-view() {
-      padding: 30px 25px;
-    }
-
-    .description {
+    &-item {
       width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      justify-content: space-between;
 
-      @include desktop-view() {
-        width: 50%;
-      }
+      box-shadow: 0 2px 4px #00000012;
 
-      .stars {
-        display: flex;
-        gap: 3px;
-      }
-
-      h1 {
-        color: #414141;
-        font-weight: 500;
-        font-size: 28px;
-      }
-
-      a {
-        text-decoration: none;
-        color: #686868;
-        font-weight: 400;
-        font-size: 14px;
-      }
-
-      .section {
-        display: flex;
-        gap: 30px;
-
-        span {
-          font-weight: 500;
-          font-size: 28px;
-          color: var(--black-02)
-        }
-
-        button {
-          padding: 12px 50px;
-          background-color: #245462;
-          color: white;
-          font-size: 14px;
-          border: none;
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
-
-        .input {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 10px;
-
-          &:nth-child(2) {
-            input {
-              width: calc(100% + 5px);
-              padding: 7px 10px;
-              font-weight: 400;
-
-            }
-          }
-
-          label {
-            font-size: 12px;
-            font-weight: 400;
-            color: var(--black-02)
-          }
-
-          input {
-            width: 30px;
-            height: 30px;
-            box-shadow: 0 2px 4px #00000012;
-            outline: none;
-            border: none;
-            text-align: center;
-            font-family: "Roboto", sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-          }
+      .img {
+        padding: 22px 20px;
+        width: fit-content;
+        height: 100%;
+        @include to-center();
+        img {
+          width: 100%;
         }
       }
 
       .info {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        justify-content: space-between;
 
-        h4 {
-          font-size: 14px;
-          font-weight: 400;
+        .data {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          justify-content: center;
+          flex-wrap: wrap;
+
+          h1 {
+            font-weight: 500;
+            font-size: 16px;
+          }
+
+          .description {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+
+            p {
+              font-weight: 400;
+              font-size: 12px;
+              color: var(--black-02);
+              display: flex;
+              gap: 10px;
+
+              span {
+                color: #9E9E9E;
+              }
+            }
+          }
         }
 
-        p {
-          line-height: 149%;
-          font-size: 14px;
-          color: #686868;
+        .price {
+
+          @include mobile-view() {
+            position: absolute;
+            right: 10px;
+            transform: translateY(15px);
+          }
+          font-weight: 500;
+          font-size: 16px;
+          color: var(--black-02);
+          display: flex;
+          align-items: flex-start;
+          padding: 20px;
         }
+      }
+
+      .delete {
+        width: 57px;
+        border: none;
+        background-color: #F9F9F9;
+        @include to-center();
+
+        @include mobile-view() {
+          position: absolute;
+
+          width: 20px;
+          height: 20px;
+          right: 25px;
+          transform: translateY(10px);
+        }
+        &:hover {
+          transition: .2s;
+          cursor: pointer;
+          background-color: #D74444;
+        }
+      }
+
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 40px 0;
+    align-items: center;
+    gap: 25px;
+
+    @include mobile-view() {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    button {
+      background-color: #245462;
+      color: white;
+      padding: 13px 50px;
+
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    p {
+      display: flex;
+      gap: 15px;
+
+      font-weight: 400;
+      font-size: 14px;
+
+
+      span {
+        font-weight: 500;
+        font-size: 16px;
+
       }
     }
   }
-  .hits {
+
+  .you-like-section {
     display: flex;
     flex-direction: column;
-    gap: 80px;
-    width: 100%;
 
-    .section-title {
-      font-size: 16px;
-      color: var(--black-02);
-      padding-left: 25px;
+    h2 {
       font-weight: 400;
-
+      font-size: 16px;
     }
 
     .items {
-      width: 100%;
-      display: flex;
+      padding: 50px 0 ;
+      gap: 30px;
       flex-wrap: wrap;
-      gap: 15px;
+      @include to-center();
+      justify-content: flex-start;
+      padding-bottom: 150px;
 
-      @include desktop-view() {
-        gap: 30px;
-        padding-bottom: 150px;
+      @include mobile-view() {
+        padding: 50px 20px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+
       }
 
       .item {
@@ -162,14 +206,27 @@
         text-decoration: none;
         color: #414141;
 
+        @include desktop-view() {
+          &:nth-child(n+5) {
+            display: none;
+          }
+        }
+
         @include laptop-view() {
           width: calc(33.33% - 30px);
+          &:nth-child(n+4) {
+            display: none;
+          }
         }
 
         @include mobile-view() {
           width: calc(50% - 15px);
           gap: 15px;
           padding: 0;
+
+          &:nth-child(n+1) {
+            display: flex;
+          }
         }
 
         background: white;
@@ -296,5 +353,4 @@
       }
     }
   }
-
 }

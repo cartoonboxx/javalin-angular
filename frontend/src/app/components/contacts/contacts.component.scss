@@ -8,7 +8,9 @@
     padding: 30px 15px;
   }
 
-
+  @include laptop-view() {
+    padding: 30px 15px;
+  }
 
   h1 {
     margin-top: 40px;
