@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Category } from '../interfaces/item';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class CategoryService {
 
   public createCategory(category: Category) {
     return this.http.post(`${this.httpSource}/categories`, category);
+  }
+
+  public getCategoryByName(name: string) {
+    return this.http.get(`${this.httpSource}/categories/${name}`);
   }
 
   public deleteCategory(id: number) {

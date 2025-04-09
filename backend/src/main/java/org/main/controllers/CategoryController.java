@@ -22,8 +22,16 @@ public class CategoryController {
     }
 
     public void delete(Context context) {
-        Category category = context.bodyAsClass(Category.class);
-        repo.delete(category.getId());
+        Long id = Long.parseLong(context.pathParam("id"));
+        System.out.println(id);
+        repo.delete(id);
+    }
+
+    public void getByName(Context context) {
+        String title = context.pathParam("name");
+        System.out.println("title" + title);
+        Category currentCat = repo.getByName(title);
+        context.json(currentCat);
     }
 }
 

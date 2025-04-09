@@ -28,6 +28,7 @@ public class CategoryRepository {
     }
 
     public void delete(Long id) {
+        System.out.println(id);
         Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
@@ -39,6 +40,27 @@ public class CategoryRepository {
         } catch (Exception ex) {
             if (tx != null) tx.rollback();
             throw ex;
+        }
+    }
+
+    public Category getByName(String name) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Выполняем запрос для получения всех категорий
+            List<Category> categories = session.createQuery("FROM Category", Category.class).list();
+
+            // Итерируем по списку категорий и ищем по названию
+            for (Category category : categories) {
+                // Сравниваем название категории с переданным значением
+                if (category.getTitle().equals(name)) {
+                    return category; // Возвращаем найденную категорию
+                }
+            }
+
+            // Если категория не найдена, возвращаем null
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Возвращаем null в случае ошибки
         }
     }
 }

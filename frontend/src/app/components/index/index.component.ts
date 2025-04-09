@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {ProductService} from '../../services/product.service';
-import Item from '../../interfaces/item';
+import { Item } from '../../interfaces/item';
 import {Subscription} from 'rxjs';
 
 @Component({

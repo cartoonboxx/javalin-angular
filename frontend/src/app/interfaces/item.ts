@@ -10,7 +10,7 @@ export interface Category {
   image: string;
 }
 
-export default interface Item {
+export interface Item {
   id: number;
   name: string;
   description: string;

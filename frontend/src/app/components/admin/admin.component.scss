@@ -4,6 +4,95 @@
   @include to-center();
   height: 100vh;
 
+  .surface {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .site-container {
+    @include to-center;
+  }
+
+  .active {
+    display: flex!important;
+  }
+
+  .category-modal {
+    padding: 40px 0;
+    z-index: 100;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include to-center();
+    background-color: white;
+    width: 400px;
+    height: 500px;
+
+    overflow-y: auto;
+    display: none;
+
+    form {
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 30px;
+
+      .input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        input {
+          height: 40px;
+          border: none;
+          outline: none;
+          box-shadow: 0 2px 4px #00000012;
+          padding: 0 15px;
+          font-family: "Roboto", sans-serif;
+        }
+
+        .custom-file-upload {
+          display: inline-block;
+          padding: 13px 20px;
+          background-color: #fff;
+          color: #414141;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: 500;
+          font-family: sans-serif;
+          transition: 0.3s ease;
+          box-shadow: 0 2px 4px #00000012;
+        }
+
+        input[type="file"] {
+          display: none;
+        }
+      }
+
+      height: 100%;
+
+      button {
+        padding: 15px 50px;
+        background-color: #245462;
+        border: none;
+        outline: none;
+        color: white;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
   .panel {
     padding: 30px;
     width: 100%;
@@ -34,6 +123,7 @@
         }
 
         .items {
+          display: flex;
           width: 100%;
           overflow-x: auto;
         }

@@ -1,14 +1,91 @@
 <main class="main">
   <div class="site-container">
+    <div class="surface" [class.active]="isShowModal" (click)="closeModal()">
+
+    </div>
+
+    <div class="category-modal" [class.active]="isShowModal">
+      <form *ngIf="chosedCategory === 'Category'" [formGroup]="categoryForm" (ngSubmit)="createNewObject()">
+        <h2>Создание категории</h2>
+        <div class="input" *ngFor="let field of formCategoryGetter">
+          <div *ngIf="field !== 'image'" class="input">
+            <label for="{{ field }}">{{ field | titlecase }}</label>
+            <input
+              type="text"
+              id="{{ field }}"
+              name="{{ field }}"
+              [formControlName]="field"
+            />
+          </div>
+          <div *ngIf="field === 'image'">
+            <div class="input">
+              <label class="custom-file-upload">
+                <input type="file" [formControlName]="field" />
+                Прикрепить фото
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="input">
+          <button type="submit" [disabled]="categoryForm.invalid">Создать</button>
+        </div>
+      </form>
+
+      <form *ngIf="chosedCategory === 'Item'" [formGroup]="itemForm" (ngSubmit)="createNewObject()">
+        <h2>Создание Товара</h2>
+        <div class="input" *ngFor="let field of formItemGetter">
+          <div *ngIf="field !== 'image' && field !== 'category' " class="input">
+            <label for="{{ field }}">{{ field | titlecase }}</label>
+            <input
+              type="text"
+              id="{{ field }}"
+              name="{{ field }}"
+              [formControlName]="field"
+            />
+          </div>
+
+          <div *ngIf="field === 'category' " class="input">
+            <label for="{{ field }}">{{ field | titlecase }}</label>
+            <select
+              type="text"
+              id="{{ field }}"
+              name="{{ field }}"
+              [formControlName]="field"
+            >
+              <option *ngFor="let category of categories">{{ category.link }}</option>
+            </select>
+          </div>
+
+          <div *ngIf="field === 'image'">
+            <div class="input">
+              <label class="custom-file-upload">
+                <input type="file" [formControlName]="field" />
+                Прикрепить фото
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="input">
+          <button type="submit" [disabled]="itemForm.invalid">Создать</button>
+        </div>
+      </form>
+    </div>
+
+
+
     <div class="panel">
       <h1>Админ-панель</h1>
       <div class="content">
         <div class="block">
           <h2>Категории</h2>
-          <div class="items"></div>
+          <div class="items">
+            <div class="item" *ngFor="let category of categories">
+              {{ category.title }}
+            </div>
+          </div>
           <div class="buttons">
             <button>Удалить</button>
-            <button>Добавить новый</button>
+            <button (click)="showModal('Category')">Добавить новый</button>
           </div>
         </div>
         <div class="block">
@@ -16,7 +93,7 @@
           <div class="items"></div>
           <div class="buttons">
             <button>Удалить</button>
-            <button>Добавить новый</button>
+            <button (click)="showModal('Item')">Добавить новый</button>
           </div>
         </div>
       </div>
