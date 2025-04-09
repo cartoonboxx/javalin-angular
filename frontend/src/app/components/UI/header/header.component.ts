@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import Link from '../../../interfaces/link';
 import { Category } from '../../../interfaces/item'
+import {CategoryService} from '../../../services/category.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { Category } from '../../../interfaces/item'
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  protected headerService: HeaderService = inject(HeaderService);
+
   inputValue: string = '';
   private sub!: Subscription;
 
@@ -34,7 +35,7 @@ export class HeaderComponent {
     }
   ]
 
-  public categories: Category[] = [
+  public categoriesTest: Category[] = [
     {
       title: 'Кухни',
       link: 'kitchens',
@@ -82,14 +83,19 @@ export class HeaderComponent {
     },
 
   ]
+  public categories!: Category[];
 
-  constructor() {
+  constructor(protected headerService: HeaderService, private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
     this.sub = this.headerService.searchData$.subscribe(value => {
       this.inputValue = value;
     });
+
+    this.categoryService.getCategories().subscribe(categories => {
+      this.categories = categories as Category[];
+    })
   }
 
   ngOnDestroy(): void {

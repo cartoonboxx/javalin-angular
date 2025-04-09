@@ -69,33 +69,33 @@
   <div class="categories">
     <div class="site-container">
       <ul class="container">
-        <a class="item" routerLink="products/kitchen">
+        <a *ngFor="let category of categories" class="item" routerLink="products/{{ category.link }}">
           <img src="icons/categories/kitchen-icon.svg" alt="">
-          <li>Кухни</li>
+          <li>{{ category.title }}</li>
         </a>
-        <a class="item">
-          <img src="icons/categories/bedroom-icon.svg" alt="">
-          <li>Спальни</li>
-        </a>
-        <a class="item">
-          <img src="icons/categories/livingroom-icon.svg" alt="">
-          <li>Гостиные</li>
-        </a>
-        <a class="item">
-          <img src="icons/categories/closet-icon.svg" alt="">
-          <li>Прихожие</li>
-        </a>
-        <a class="item">
-          <img src="icons/categories/office-icon.svg" alt="">
-          <li>Офисная мебель</li>
-        </a>
-        <a class="item">
-          <img src="icons/categories/childrensroom-icon.svg" alt="">
-          <li>Детская</li>
-        </a>
-        <a class="item action">
-          <li>Акция</li>
-        </a>
+<!--        <a class="item">-->
+<!--          <img src="icons/categories/bedroom-icon.svg" alt="">-->
+<!--          <li>Спальни</li>-->
+<!--        </a>-->
+<!--        <a class="item">-->
+<!--          <img src="icons/categories/livingroom-icon.svg" alt="">-->
+<!--          <li>Гостиные</li>-->
+<!--        </a>-->
+<!--        <a class="item">-->
+<!--          <img src="icons/categories/closet-icon.svg" alt="">-->
+<!--          <li>Прихожие</li>-->
+<!--        </a>-->
+<!--        <a class="item">-->
+<!--          <img src="icons/categories/office-icon.svg" alt="">-->
+<!--          <li>Офисная мебель</li>-->
+<!--        </a>-->
+<!--        <a class="item">-->
+<!--          <img src="icons/categories/childrensroom-icon.svg" alt="">-->
+<!--          <li>Детская</li>-->
+<!--        </a>-->
+<!--        <a class="item action">-->
+<!--          <li>Акция</li>-->
+<!--        </a>-->
         <div class="kebab-wrapper">
           <input type="checkbox" id="menu-toggle" class="kebab-toggle" />
           <label for="menu-toggle" class="kebab-icon">

@@ -16,6 +16,7 @@ import { DropdownComponent } from './components/UI/dropdown/dropdown.component';
 import { SearchComponent } from './components/search/search.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,11 +34,12 @@ import { AdminComponent } from './components/admin/admin.component';
     DropdownComponent,
     SearchComponent,
     BasketComponent,
-    AdminComponent
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(withEventReplay())
