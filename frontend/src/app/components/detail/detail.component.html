@@ -1,13 +1,9 @@
 <main class="main">
   <div class="site-container">
     <ul class="navigation-route">
-      <a><li>Главная</li></a>
+      <a routerLink="/"><li>Главная</li></a>
       /
-      <a><li>Гостинные</li></a>
-      /
-      <a><li>Мягкая мебель</li></a>
-      /
-      <a><li>Диваны</li></a>
+      <a routerLink="/products/{{currentItem.category.link}}"><li>{{ currentItem.category.title }}</li></a>
     </ul>
 
     <div class="container">
@@ -20,25 +16,26 @@
           <img src="icons/star full.svg" alt="">
           <img src="icons/star not full.svg" alt="">
         </div>
-        <h1>Динс Velvet Yellow</h1>
-        <a routerLink="/products/kitchen">Диваны</a>
+        <h1>{{ currentItem.title }}</h1>
+        <a routerLink="/products/{{ currentItem.category.link }}">{{ currentItem.category.title }}</a>
         <div class="section">
-          <span>4 690₽</span>
+          <span>{{ currentItem.price * countItem }}₽</span>
           <button>Купить</button>
         </div>
         <div class="section">
           <div class="input">
             <label for="count">Количество</label>
-            <input type="text" id="count" name="count" value="1">
+            <input type="number" id="count" name="count" value="1" min="1" [(ngModel)]="countItem">
           </div>
           <div class="input">
             <label for="size">Размер (Д × Ш × В)</label>
-            <input type="text" id="size" name="size" value="218 СМ × 95 СМ × 90 СМ" readonly>
+            <input type="text" id="size" name="size"
+                   value="{{ currentItem.size.width }} СМ × {{ currentItem.size.length}} СМ × {{ currentItem.size.height }} СМ" readonly>
           </div>
         </div>
         <div class="info">
           <h4>Описание</h4>
-          <p>Лаконичные линии и простые формы, безупречный стиль и индивидуальность – все это диван «Динс». Сдержанный скандинавский дизайн украсит любую современную обстановку. Элегантность, комфорт и функциональность, собранные воедино – «Динс» просто создан для размеренного отдыха в кругу семьи или компании друзей!</p>
+          <p>{{ currentItem.description }}</p>
         </div>
       </div>
     </div>

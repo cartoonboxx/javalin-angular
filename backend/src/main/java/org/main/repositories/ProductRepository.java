@@ -22,10 +22,17 @@ public class ProductRepository {
             session.persist(product);
             tx.commit();
         } catch (Exception ex) {
-            if (tx != null) tx.rollback();
+            if (tx != null && tx.getStatus().canRollback()) {
+                try {
+                    tx.rollback();
+                } catch (Exception rollbackEx) {
+                    System.err.println("⚠️ Rollback failed: " + rollbackEx.getMessage());
+                }
+            }
             throw ex;
         }
     }
+
 
     public void delete(Long id) {
         Transaction tx = null;
@@ -40,6 +47,23 @@ public class ProductRepository {
             if (tx != null) tx.rollback();
             throw ex;
         }
+    }
+
+    public void getById(Long id) {
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            List<Product> products = session.createQuery("FROM Product", Product.class).list();
+//            Product gotProduct = products.get(0);
+//            products.forEach(product -> {
+//                if (product.getId().equals(id)) {
+//                    gotProduct = product;
+//                }
+//            });
+//
+//            return gotProduct;
+//
+//        }
+//
+//
     }
 }
 

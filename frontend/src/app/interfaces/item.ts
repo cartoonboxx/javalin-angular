@@ -1,10 +1,12 @@
 interface Size {
+  id?: number;
   width: number;
   length: number;
   height: number;
 }
 
 export interface Category {
+  id?: number;
   title: string;
   link: string;
   image: string;
@@ -12,10 +14,10 @@ export interface Category {
 
 export interface Item {
   id: number;
-  name: string;
+  title: string;
   description: string;
   image: string;
   price: number;
   category: Category;
-  sizes: Size;
+  size: Size;
 }

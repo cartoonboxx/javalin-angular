@@ -11,6 +11,8 @@ import {Subscription} from 'rxjs';
 })
 export class IndexComponent {
 
+  public serverURL: string = 'http://localhost:7070/';
+
   public products!: Item[];
   public productSubscription!: Subscription;
 

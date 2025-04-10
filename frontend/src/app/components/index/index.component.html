@@ -3,9 +3,9 @@
     <app-slider></app-slider>
     <h2 class="title">Хиты продаж</h2>
     <div class="container">
-      <a *ngFor="let product of products" class="item" routerLink="products/chairs/{{product.id}}">
-        <img src="assets/chair.png" alt="img">
-        <h1>{{ product.name }}</h1>
+      <a *ngFor="let product of products" class="item" routerLink="products/{{ product.category.link }}/{{product.id}}">
+        <img src="{{ serverURL + product.image }}" alt="img">
+        <h1>{{ product.title }}</h1>
         <p>{{ product.category.title }}</p>
         <span>{{ product.price }}₽</span>
         <div class="extra">
@@ -13,17 +13,17 @@
           <div class="sizes">
             <div class="size">
               <p>Ширина</p>
-              <span>{{ product.sizes.width }} см</span>
+              <span>{{ product.size.width }} см</span>
             </div>
             x
             <div class="size">
               <p>Глубина</p>
-              <span>{{ product.sizes.length }} см</span>
+              <span>{{ product.size.length }} см</span>
             </div>
             x
             <div class="size">
               <p>Высота</p>
-              <span>{{ product.sizes.height }} см</span>
+              <span>{{ product.size.height }} см</span>
             </div>
           </div>
           <button>Добавить в корзину</button>

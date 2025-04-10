@@ -14,7 +14,9 @@ import {CategoryService} from '../../../services/category.service';
 })
 export class HeaderComponent {
 
-  inputValue: string = '';
+  public serverURL: string = 'http://localhost:7070/';
+
+  public inputValue: string = '';
   private sub!: Subscription;
 
   public mainLinks: Link[] = [
@@ -35,54 +37,6 @@ export class HeaderComponent {
     }
   ]
 
-  public categoriesTest: Category[] = [
-    {
-      title: 'Кухни',
-      link: 'kitchens',
-      image: 'icons/categories/kitchen-icon.svg'
-    },
-    {
-      title: 'Спальни',
-      link: 'bedrooms',
-      image: 'icons/categories/bedroom-icon.svg'
-    },
-    {
-      title: 'Гостинные',
-      link: 'livingrooms',
-      image: 'icons/categories/livingroom-icon.svg'
-    },
-    {
-      title: 'Прихожие',
-      link: 'closets',
-      image: 'icons/categories/closet-icon.svg'
-    },
-    {
-      title: 'Офисная мебель',
-      link: 'offices',
-      image: 'icons/categories/office-icon.svg'
-    },
-    {
-      title: 'Детская',
-      link: 'childrensrooms',
-      image: 'icons/categories/childrensroom-icon.svg'
-    },
-    {
-      title: 'Матрасы',
-      link: 'mattresses',
-      image: 'icons/categories/mattress.svg'
-    },
-    {
-      title: 'Мягкая мебель',
-      link: 'armchairs',
-      image: 'icons/categories/armchair.svg'
-    },
-    {
-      title: 'Шкафы',
-      link: 'cupboards',
-      image: 'icons/categories/cupboard.svg'
-    },
-
-  ]
   public categories!: Category[];
 
   constructor(protected headerService: HeaderService, private categoryService: CategoryService) {
@@ -96,6 +50,10 @@ export class HeaderComponent {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories as Category[];
     })
+  }
+
+  public updateRouter(title: string): void {
+    this.categoryService.updateCategory(title);
   }
 
   ngOnDestroy(): void {

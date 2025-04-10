@@ -11,10 +11,16 @@ import {ProductService} from '../../services/product.service';
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent {
+  public serverURL: string = 'http://localhost:7070/';
+
+  public selectedCategoryImage: File | null = null;
+  public selectedItemImage: File | null = null;
+
   public isShowModal: boolean = false;
   public chosedCategory: string = '';
 
   public categories!: Category[];
+  public products!: Item[];
 
   public categoryForm: FormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -23,7 +29,7 @@ export class AdminComponent {
   });
 
   public itemForm: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
     description: new FormControl(''),
     image: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
@@ -37,53 +43,76 @@ export class AdminComponent {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories as Category[];
     })
+
+    this.productService.getItems().subscribe(items => {
+      this.products = items as Item[];
+    })
   }
 
   public createNewObject(): void {
 
-    console.log("hello!")
-    console.log(this.chosedCategory)
     if (this.chosedCategory === 'Category') {
-      console.log(this.categoryForm.value);
 
-      const category = {...this.categoryForm.value} as Category;
-      this.categoryService.createCategory(category).subscribe(category => {
-        console.log('data', category)
+      const formData = new FormData();
+      formData.append('title', this.categoryForm.get('title')?.value);
+      formData.append('link', this.categoryForm.get('link')?.value);
+      if (this.selectedCategoryImage) {
+        console.log(this.selectedCategoryImage)
+        formData.append('image', this.selectedCategoryImage);
+      }
+
+      this.categoryService.createCategory(formData).subscribe(category => {
         this.isShowModal = false;
 
         this.categoryService.getCategories().subscribe(categories => {
           this.categories = categories as Category[];
         })
+
+        this.categoryForm.reset();
       });
 
 
     } else if (this.chosedCategory === 'Item') {
       const data = {...this.itemForm.value};
 
-      const categoryTitle = data.category;
-
-      console.log(data, categoryTitle)
+      const categoryTitle: string = data.category;
       this.categoryService.getCategoryByName(categoryTitle).subscribe(category => {
 
+        console.log(categoryTitle, category);
         const categoryCat: Category = category as Category;
-        const item = {
-          name: data.name,
-          description: data.description ?? '',
-          image: data.image,
-          price: data.price,
-          category: {
-            title: categoryCat.title,
-            link: categoryCat.link,
-            image: categoryCat.image,
-          },
-          sizes: {
-            width: data.width,
-            length: data.length,
-            height: data.height
-          }
+
+        const formData = new FormData();
+        formData.append('title', data.title);
+        formData.append('description', data.description);
+        formData.append('price', data.price);
+        formData.append('category', JSON.stringify({
+          id: categoryCat.id,
+          title: categoryCat.title,
+          link: categoryCat.link,
+          image: categoryCat.image,
+        }));
+        formData.append('size', JSON.stringify({
+          width: data.width,
+          length: data.length,
+          height: data.height
+        }));
+        if (this.selectedItemImage) {
+          formData.append('image', this.selectedItemImage);
         }
 
-        console.log(item)
+        console.log(Object.fromEntries(formData))
+
+        this.productService.createItem(formData).subscribe(item => {
+          this.isShowModal = false;
+          this.chosedCategory = '';
+
+          this.itemForm.reset();
+
+          this.productService.getItems().subscribe(products => {
+            this.products = products as Item[];
+          })
+
+        })
       })
 
     }
@@ -106,5 +135,19 @@ export class AdminComponent {
   get formItemGetter(): string[] {
     return Object.keys(this.itemForm.controls);
   }
+
+  public onFileSelected(event: Event, type: 'Category' | 'Item') {
+    console.log("here")
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      if (type === 'Category') {
+        this.selectedCategoryImage = file;
+      } else {
+        this.selectedItemImage = file;
+      }
+    }
+  }
+
 }
 

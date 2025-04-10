@@ -20,14 +20,14 @@
           <div *ngIf="field === 'image'">
             <div class="input">
               <label class="custom-file-upload">
-                <input type="file" [formControlName]="field" />
+                <input type="file" (change)="onFileSelected($event, 'Category')" />
                 Прикрепить фото
               </label>
             </div>
           </div>
         </div>
         <div class="input">
-          <button type="submit" [disabled]="categoryForm.invalid">Создать</button>
+          <button type="submit">Создать</button>
         </div>
       </form>
 
@@ -52,21 +52,23 @@
               name="{{ field }}"
               [formControlName]="field"
             >
-              <option *ngFor="let category of categories">{{ category.link }}</option>
+              <option *ngFor="let category of categories" [value]="category.link">
+                {{ category.link }}
+              </option>
             </select>
           </div>
 
           <div *ngIf="field === 'image'">
             <div class="input">
               <label class="custom-file-upload">
-                <input type="file" [formControlName]="field" />
+                <input type="file" (change)="onFileSelected($event, 'Item')" />
                 Прикрепить фото
               </label>
             </div>
           </div>
         </div>
         <div class="input">
-          <button type="submit" [disabled]="itemForm.invalid">Создать</button>
+          <button type="submit">Создать</button>
         </div>
       </form>
     </div>
@@ -80,7 +82,8 @@
           <h2>Категории</h2>
           <div class="items">
             <div class="item" *ngFor="let category of categories">
-              {{ category.title }}
+              <img src="{{ serverURL + category.image }}">
+              <p>{{ category.title }}</p>
             </div>
           </div>
           <div class="buttons">
@@ -90,7 +93,12 @@
         </div>
         <div class="block">
           <h2>Товары</h2>
-          <div class="items"></div>
+          <div class="items">
+            <div class="item product" *ngFor="let product of products">
+              <img [src]="serverURL + product.image" alt="">
+              <h3>{{ product.title }}</h3>
+            </div>
+          </div>
           <div class="buttons">
             <button>Удалить</button>
             <button (click)="showModal('Item')">Добавить новый</button>

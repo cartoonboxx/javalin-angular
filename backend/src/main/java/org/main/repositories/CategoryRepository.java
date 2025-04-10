@@ -50,8 +50,9 @@ public class CategoryRepository {
 
             // Итерируем по списку категорий и ищем по названию
             for (Category category : categories) {
+                System.out.println("search " + category.getTitle());
                 // Сравниваем название категории с переданным значением
-                if (category.getTitle().equals(name)) {
+                if (category.getLink().equals(name)) {
                     return category; // Возвращаем найденную категорию
                 }
             }

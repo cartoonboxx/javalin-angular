@@ -46,7 +46,7 @@
         <ul>
           <a *ngFor="let cat of categories" routerLink="products/{{ cat.link }}">
             <li>
-              <img [src]="cat.image" alt="">
+              <img src="{{ serverURL + cat.image }}" alt="">
               <label>{{ cat.title }}</label>
             </li>
           </a>
@@ -69,33 +69,10 @@
   <div class="categories">
     <div class="site-container">
       <ul class="container">
-        <a *ngFor="let category of categories" class="item" routerLink="products/{{ category.link }}">
-          <img src="icons/categories/kitchen-icon.svg" alt="">
+        <a *ngFor="let category of categories" class="item" (click)="updateRouter(category.title)" routerLink="products/{{ category.link }}">
+          <img src="{{ serverURL + category.image }}" alt="">
           <li>{{ category.title }}</li>
         </a>
-<!--        <a class="item">-->
-<!--          <img src="icons/categories/bedroom-icon.svg" alt="">-->
-<!--          <li>Спальни</li>-->
-<!--        </a>-->
-<!--        <a class="item">-->
-<!--          <img src="icons/categories/livingroom-icon.svg" alt="">-->
-<!--          <li>Гостиные</li>-->
-<!--        </a>-->
-<!--        <a class="item">-->
-<!--          <img src="icons/categories/closet-icon.svg" alt="">-->
-<!--          <li>Прихожие</li>-->
-<!--        </a>-->
-<!--        <a class="item">-->
-<!--          <img src="icons/categories/office-icon.svg" alt="">-->
-<!--          <li>Офисная мебель</li>-->
-<!--        </a>-->
-<!--        <a class="item">-->
-<!--          <img src="icons/categories/childrensroom-icon.svg" alt="">-->
-<!--          <li>Детская</li>-->
-<!--        </a>-->
-<!--        <a class="item action">-->
-<!--          <li>Акция</li>-->
-<!--        </a>-->
         <div class="kebab-wrapper">
           <input type="checkbox" id="menu-toggle" class="kebab-toggle" />
           <label for="menu-toggle" class="kebab-icon">

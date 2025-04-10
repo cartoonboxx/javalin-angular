@@ -15,7 +15,7 @@ public class Product {
     private String image;
     private Integer price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "category_id") // внешний ключ к Category
     private Category category;
 

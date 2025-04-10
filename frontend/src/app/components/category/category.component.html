@@ -4,7 +4,7 @@
       <ul class="navigation-route">
         <a routerLink="/"><li>Главная</li></a>
         /
-        <a routerLink="products/kitchen"><li>Кухни</li></a>
+        <a routerLink="products/{{ category.link }}"><li>{{ category.title }}</li></a>
       </ul>
       <app-dropdown></app-dropdown>
     </div>
