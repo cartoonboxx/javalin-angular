@@ -26,10 +26,14 @@ public class ProductController {
         context.json(products);
     }
 
+    public List<Product> getAllProducts() {
+        List<Product> products = repo.findAll();
+        return products;
+    }
+
     public void create(Context context) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
-        System.out.println("GOT RESULT " + mapper.readValue(context.formParam("category"), Category.class));
 
         String title = context.formParam("title");
         String description = context.formParam("description");
@@ -84,7 +88,23 @@ public class ProductController {
 
     public void getById(Context context) {
         Long id = Long.parseLong(context.pathParam("id"));
-        repo.getById(id);
+        List<Product> products = this.getAllProducts();
+
+        for (Product product : products) {
+            if (product.getId().equals(id)) {
+                context.json(product);
+                return;
+            }
+        }
+
+        context.json(null);
+    }
+
+    public void update(Context context) {
+        Long id = Long.parseLong(context.pathParam("id"));
+
+        
+
     }
 }
 

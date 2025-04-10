@@ -6,7 +6,7 @@
 
     <div class="category-modal" [class.active]="isShowModal">
       <form *ngIf="chosedCategory === 'Category'" [formGroup]="categoryForm" (ngSubmit)="createNewObject()">
-        <h2>Создание категории</h2>
+        <h2>{{ titleModal }}</h2>
         <div class="input" *ngFor="let field of formCategoryGetter">
           <div *ngIf="field !== 'image'" class="input">
             <label for="{{ field }}">{{ field | titlecase }}</label>
@@ -27,12 +27,13 @@
           </div>
         </div>
         <div class="input">
-          <button type="submit">Создать</button>
+          <button *ngIf="titleModal.includes('Создание') " type="submit">Создать</button>
+          <button *ngIf="titleModal.includes('Изменение') " type="submit">Изменить</button>
         </div>
       </form>
 
       <form *ngIf="chosedCategory === 'Item'" [formGroup]="itemForm" (ngSubmit)="createNewObject()">
-        <h2>Создание Товара</h2>
+        <h2>{{ titleModal }}</h2>
         <div class="input" *ngFor="let field of formItemGetter">
           <div *ngIf="field !== 'image' && field !== 'category' " class="input">
             <label for="{{ field }}">{{ field | titlecase }}</label>
@@ -68,7 +69,8 @@
           </div>
         </div>
         <div class="input">
-          <button type="submit">Создать</button>
+          <button *ngIf="titleModal.includes('Создание') " type="submit">Создать</button>
+          <button *ngIf="titleModal.includes('Изменение') " type="submit">Изменить</button>
         </div>
       </form>
     </div>
@@ -81,7 +83,7 @@
         <div class="block">
           <h2>Категории</h2>
           <div class="items">
-            <div class="item" *ngFor="let category of categories">
+            <div (click)="showDetails(category)" class="item" *ngFor="let category of categories">
               <img src="{{ serverURL + category.image }}">
               <p>{{ category.title }}</p>
             </div>
@@ -94,7 +96,7 @@
         <div class="block">
           <h2>Товары</h2>
           <div class="items">
-            <div class="item product" *ngFor="let product of products">
+            <div (click)="showDetails(product)" class="item product" *ngFor="let product of products">
               <img [src]="serverURL + product.image" alt="">
               <h3>{{ product.title }}</h3>
             </div>

@@ -49,21 +49,6 @@ public class ProductRepository {
         }
     }
 
-    public void getById(Long id) {
-//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//            List<Product> products = session.createQuery("FROM Product", Product.class).list();
-//            Product gotProduct = products.get(0);
-//            products.forEach(product -> {
-//                if (product.getId().equals(id)) {
-//                    gotProduct = product;
-//                }
-//            });
-//
-//            return gotProduct;
-//
-//        }
-//
-//
-    }
+
 }
 

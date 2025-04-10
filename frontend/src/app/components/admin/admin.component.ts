@@ -13,6 +13,8 @@ import {ProductService} from '../../services/product.service';
 export class AdminComponent {
   public serverURL: string = 'http://localhost:7070/';
 
+  public titleModal!: string;
+
   public selectedCategoryImage: File | null = null;
   public selectedItemImage: File | null = null;
 
@@ -51,70 +53,81 @@ export class AdminComponent {
 
   public createNewObject(): void {
 
-    if (this.chosedCategory === 'Category') {
-
-      const formData = new FormData();
-      formData.append('title', this.categoryForm.get('title')?.value);
-      formData.append('link', this.categoryForm.get('link')?.value);
-      if (this.selectedCategoryImage) {
-        console.log(this.selectedCategoryImage)
-        formData.append('image', this.selectedCategoryImage);
-      }
-
-      this.categoryService.createCategory(formData).subscribe(category => {
-        this.isShowModal = false;
-
-        this.categoryService.getCategories().subscribe(categories => {
-          this.categories = categories as Category[];
-        })
-
-        this.categoryForm.reset();
-      });
-
-
-    } else if (this.chosedCategory === 'Item') {
-      const data = {...this.itemForm.value};
-
-      const categoryTitle: string = data.category;
-      this.categoryService.getCategoryByName(categoryTitle).subscribe(category => {
-
-        console.log(categoryTitle, category);
-        const categoryCat: Category = category as Category;
+    if (this.titleModal.includes('Создание')) {
+      if (this.chosedCategory === 'Category') {
 
         const formData = new FormData();
-        formData.append('title', data.title);
-        formData.append('description', data.description);
-        formData.append('price', data.price);
-        formData.append('category', JSON.stringify({
-          id: categoryCat.id,
-          title: categoryCat.title,
-          link: categoryCat.link,
-          image: categoryCat.image,
-        }));
-        formData.append('size', JSON.stringify({
-          width: data.width,
-          length: data.length,
-          height: data.height
-        }));
-        if (this.selectedItemImage) {
-          formData.append('image', this.selectedItemImage);
+        formData.append('title', this.categoryForm.get('title')?.value);
+        formData.append('link', this.categoryForm.get('link')?.value);
+        if (this.selectedCategoryImage) {
+          console.log(this.selectedCategoryImage)
+          formData.append('image', this.selectedCategoryImage);
         }
 
-        console.log(Object.fromEntries(formData))
-
-        this.productService.createItem(formData).subscribe(item => {
+        this.categoryService.createCategory(formData).subscribe(category => {
           this.isShowModal = false;
-          this.chosedCategory = '';
 
-          this.itemForm.reset();
-
-          this.productService.getItems().subscribe(products => {
-            this.products = products as Item[];
+          this.categoryService.getCategories().subscribe(categories => {
+            this.categories = categories as Category[];
           })
 
-        })
-      })
+          this.categoryForm.reset();
+        });
 
+
+      }
+      else if (this.chosedCategory === 'Item') {
+        const data = {...this.itemForm.value};
+
+        const categoryTitle: string = data.category;
+        this.categoryService.getCategoryByName(categoryTitle).subscribe(category => {
+
+          console.log(categoryTitle, category);
+          const categoryCat: Category = category as Category;
+
+          const formData = new FormData();
+          formData.append('title', data.title);
+          formData.append('description', data.description);
+          formData.append('price', data.price);
+          formData.append('category', JSON.stringify({
+            id: categoryCat.id,
+            title: categoryCat.title,
+            link: categoryCat.link,
+            image: categoryCat.image,
+          }));
+          formData.append('size', JSON.stringify({
+            width: data.width,
+            length: data.length,
+            height: data.height
+          }));
+          if (this.selectedItemImage) {
+            formData.append('image', this.selectedItemImage);
+          }
+
+          console.log(Object.fromEntries(formData))
+
+          this.productService.createItem(formData).subscribe(item => {
+            this.isShowModal = false;
+            this.chosedCategory = '';
+
+            this.itemForm.reset();
+
+            this.productService.getItems().subscribe(products => {
+              this.products = products as Item[];
+            })
+
+          })
+        })
+
+      }
+    }
+    else {
+      if (this.chosedCategory === 'Category') {
+
+      }
+      else if (this.chosedCategory === 'Item') {
+
+      }
     }
   }
 
@@ -122,9 +135,16 @@ export class AdminComponent {
     this.isShowModal = !this.isShowModal;
   }
 
-  public showModal(typeModal: string): void {
+  public showModal(typeModal: string, title: string = 'Создание '): void {
     this.isShowModal = !this.isShowModal;
     this.chosedCategory = typeModal;
+
+    if (this.chosedCategory === 'Category') {
+      this.titleModal = title + 'Категории';
+    }
+    else {
+      this.titleModal = title + 'Товара';
+    }
     console.log(this.chosedCategory);
   }
 
@@ -146,6 +166,35 @@ export class AdminComponent {
       } else {
         this.selectedItemImage = file;
       }
+    }
+  }
+
+  public showDetails(item: Item | Category): void {
+    if ('price' in item) {
+      // Товары
+
+      console.log(item);
+      this.itemForm.patchValue({
+        title: item.title || '',
+        description: item.description || '',
+        image: item.image || '',
+        price: item.price || '',
+        category: item.category.title || '',
+        width: item.size.width || '',
+        length: item.size.length || '',
+        height: item.size.height || '',
+      });
+
+      this.showModal('Item', 'Изменение ');
+    }
+    else {
+      this.categoryForm.patchValue({
+        title: item.title,
+        link: item.link,
+        image: item.image || '',
+      });
+
+      this.showModal('Category', 'Изменение ');
     }
   }
 

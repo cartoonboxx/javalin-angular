@@ -23,15 +23,26 @@ export class DetailComponent {
     const linkSplitted = this.router.url.split('/');
     const id: number = Number(linkSplitted[linkSplitted.length - 1]);
 
-    this.productService.getItems().subscribe(items => {
-      this.products = items;
-      this.products.forEach((product: Item) => {
-        if (product.id === id) {
-          this.currentItem = product;
-          return;
-        }
-      })
+    this.productService.getItemById(id).subscribe((product) => {
+      this.currentItem = product as Item;
     })
+  }
+
+  blockMinus(event: KeyboardEvent): void {
+    if (event.key === '-' || event.key === 'e') {
+      event.preventDefault();
+    }
+  }
+
+  preventNegative(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+
+    // Убираем всё, что меньше 1
+    if (+value < 1) {
+      input.value = '1';
+      this.countItem = 1;
+    }
   }
 
 }

@@ -18,6 +18,7 @@ import { BasketComponent } from './components/basket/basket.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { PositiveNumberOnlyDirective } from './directives/positive-number-only.directive';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SearchComponent,
     BasketComponent,
     AdminComponent,
+    PositiveNumberOnlyDirective,
   ],
   imports: [
     BrowserModule,

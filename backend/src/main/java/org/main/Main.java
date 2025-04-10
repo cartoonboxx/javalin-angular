@@ -30,6 +30,7 @@ public class Main {
         app.post("/products", productController::create);
         app.delete("/products/{id}", productController::delete);
         app.get("/products/{id}", productController::getById);
+        app.post("/products/{id}", productController::update);
 
         app.get("/categories", categoryController::getAll);
         app.post("/categories", categoryController::create);
