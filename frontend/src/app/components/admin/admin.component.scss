@@ -77,6 +77,10 @@
         }
       }
 
+
+      h2 {
+        text-align: center;
+      }
       height: 100%;
 
       button {
@@ -136,9 +140,10 @@
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 
             &:hover {
-              transform: scale(1.05);
+              transform: scale(1.02);
               cursor: pointer;
               transition: .2s;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
           }
 

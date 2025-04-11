@@ -53,7 +53,7 @@ export class AdminComponent {
 
   public createNewObject(): void {
 
-    if (this.titleModal.includes('Создание')) {
+    if (this.titleModal.includes('Добавление')) {
       if (this.chosedCategory === 'Category') {
 
         const formData = new FormData();
@@ -135,7 +135,7 @@ export class AdminComponent {
     this.isShowModal = !this.isShowModal;
   }
 
-  public showModal(typeModal: string, title: string = 'Создание '): void {
+  public showModal(typeModal: string, title: string = 'Добавление '): void {
     this.isShowModal = !this.isShowModal;
     this.chosedCategory = typeModal;
 
