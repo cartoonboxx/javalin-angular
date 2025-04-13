@@ -49,6 +49,36 @@ public class ProductRepository {
         }
     }
 
+    public void update(Product product) {
+        if (product.getId() == null) {
+            throw new IllegalArgumentException("Product ID cannot be null");
+        }
+
+        System.out.println("title + " + product.getTitle());
+
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+
+            // Проверяем, существует ли объект с таким id
+            Product existingProduct = session.get(Product.class, product.getId());
+            if (existingProduct == null) {
+                throw new IllegalArgumentException("Product with ID " + product.getId() + " does not exist");
+            }
+
+            // Обновляем объект
+            session.merge(product);
+            tx.commit();
+        } catch (Exception ex) {
+            if (tx != null && tx.getStatus().canRollback()) {
+                try {
+                    tx.rollback();
+                } catch (Exception rollbackEx) {
+                    System.err.println("⚠️ Rollback failed: " + rollbackEx.getMessage());
+                }
+            }
+        }
+    }
 
 }
 

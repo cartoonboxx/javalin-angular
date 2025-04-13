@@ -24,6 +24,8 @@ export class AdminComponent {
   public categories!: Category[];
   public products!: Item[];
 
+  public currentIdItem!: number;
+
   public categoryForm: FormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
     link: new FormControl('', Validators.required),
@@ -51,7 +53,7 @@ export class AdminComponent {
     })
   }
 
-  public createNewObject(): void {
+  public createNewObject(id: number | null = null): void {
 
     if (this.titleModal.includes('Добавление')) {
       if (this.chosedCategory === 'Category') {
@@ -123,16 +125,81 @@ export class AdminComponent {
     }
     else {
       if (this.chosedCategory === 'Category') {
+        const formData = new FormData();
+        formData.append('title', this.categoryForm.get('title')?.value);
+        formData.append('link', this.categoryForm.get('link')?.value);
+        if (this.selectedCategoryImage) {
+          console.log(this.selectedCategoryImage)
+          formData.append('image', this.selectedCategoryImage);
+        }
 
+        // console.log(Object.fromEntries(formData))
+        const title = Object.fromEntries(formData)['title'];
+        console.log(title as string)
+        // this.categoryService.updateCategory(title as string)
       }
       else if (this.chosedCategory === 'Item') {
+        const data = {...this.itemForm.value};
 
+        console.log(this.currentIdItem)
+        const categoryTitle: string = data.category;
+        this.categoryService.getCategoryByName(categoryTitle).subscribe(category => {
+
+          console.log(categoryTitle, category);
+          const categoryCat: Category = category as Category;
+
+          const formData = new FormData();
+          formData.append('title', data.title);
+          formData.append('description', data.description);
+          formData.append('price', data.price);
+          formData.append('category', JSON.stringify({
+            id: categoryCat.id,
+            title: categoryCat.title,
+            link: categoryCat.link,
+            image: categoryCat.image,
+          }));
+          formData.append('size', JSON.stringify({
+            width: data.width,
+            length: data.length,
+            height: data.height
+          }));
+          if (this.selectedItemImage) {
+            formData.append('image', this.selectedItemImage);
+          }
+
+          console.log(Object.fromEntries(formData))
+          // let dataRequest = formData.get("");
+          this.productService.updateById(this.currentIdItem, formData).subscribe(item => {
+            this.isShowModal = false;
+            this.chosedCategory = '';
+
+            this.itemForm.reset();
+
+            this.productService.getItems().subscribe(products => {
+              this.products = products as Item[];
+            })
+          })
+          // this.productService.createItem(formData).subscribe(item => {
+          //   this.isShowModal = false;
+          //   this.chosedCategory = '';
+          //
+          //   this.itemForm.reset();
+          //
+          //   this.productService.getItems().subscribe(products => {
+          //     this.products = products as Item[];
+          //   })
+          //
+          // })
+        })
       }
     }
   }
 
   public closeModal(): void {
     this.isShowModal = !this.isShowModal;
+
+    this.categoryForm.reset();
+    this.itemForm.reset();
   }
 
   public showModal(typeModal: string, title: string = 'Добавление '): void {
@@ -145,7 +212,6 @@ export class AdminComponent {
     else {
       this.titleModal = title + 'Товара';
     }
-    console.log(this.chosedCategory);
   }
 
   get formCategoryGetter(): string[] {
@@ -170,6 +236,9 @@ export class AdminComponent {
   }
 
   public showDetails(item: Item | Category): void {
+
+
+    this.currentIdItem = item.id as number;
     if ('price' in item) {
       // Товары
 
@@ -195,6 +264,25 @@ export class AdminComponent {
       });
 
       this.showModal('Category', 'Изменение ');
+    }
+  }
+
+  public deleteItem(id: number, typeModel: string): void {
+    if (typeModel === 'Category') {
+      this.categoryService.deleteCategory(id).subscribe(category => {
+        this.closeModal();
+        this.categoryService.getCategories().subscribe(categories => {
+          this.categories = categories as Category[];
+        })
+      });
+    }
+    else {
+      this.productService.deleteItem(id).subscribe(product => {
+        this.closeModal();
+        this.productService.getItems().subscribe(products => {
+          this.products = products as Item[];
+        })
+      })
     }
   }
 

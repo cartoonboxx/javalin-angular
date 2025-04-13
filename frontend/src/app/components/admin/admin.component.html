@@ -29,7 +29,7 @@
         <div class="input">
           <button *ngIf="titleModal.includes('Добавление') " type="submit">Создать</button>
           <div class="buttons" *ngIf="titleModal.includes('Изменение')" >
-            <button>Удалить</button>
+            <button (click)="deleteItem(currentIdItem, 'Category')">Удалить</button>
             <button type="submit">Изменить</button>
           </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="input">
           <button *ngIf="titleModal.includes('Добавление') " type="submit">Создать</button>
           <div class="buttons" *ngIf="titleModal.includes('Изменение')" >
-            <button>Удалить</button>
+            <button (click)="deleteItem(currentIdItem, 'Item')">Удалить</button>
             <button type="submit">Изменить</button>
           </div>
         </div>

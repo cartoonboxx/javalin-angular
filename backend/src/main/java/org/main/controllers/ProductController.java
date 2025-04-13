@@ -100,10 +100,80 @@ public class ProductController {
         context.json(null);
     }
 
-    public void update(Context context) {
-        Long id = Long.parseLong(context.pathParam("id"));
+    public Product getByIdReturned(Long id) {
 
-        
+        List<Product> products = this.getAllProducts();
+
+        Product returnProduct = null;
+        for (Product product : products) {
+            if (product.getId().equals(id)) {
+                returnProduct = product;
+                break;
+            }
+        }
+
+        return returnProduct;
+    }
+
+    public void update(Context context) throws Exception {
+        String id = context.pathParam("id");
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            Long curId = Long.parseLong(id); // Преобразуем строку в число
+            Product product = this.getByIdReturned(Long.parseLong(id)); // Получаем продукт по id
+
+            if (product == null) {
+                context.status(404).result("Product not found");
+                return;
+            }
+
+            UploadedFile uploadedFile = context.uploadedFile("image");
+            if (uploadedFile == null) {
+                context.status(400).result("Image is required");
+                return;
+            }
+
+            String uploadDir = "uploads/";
+            Files.createDirectories(Path.of(uploadDir));
+            String imagePath = uploadDir + uploadedFile.filename();
+
+            try (InputStream is = uploadedFile.content()) {
+                Files.copy(is, Path.of(imagePath), StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            System.out.println("title " + context.formParam("title"));
+            String title = context.formParam("title");
+            String description = context.formParam("description");
+            Integer price = Integer.parseInt(context.formParam("price"));
+            Category category = mapper.readValue(context.formParam("category"), Category.class);
+            Size size = mapper.readValue(context.formParam("size"), Size.class);
+            System.out.println("price " + context.formParam("price"));
+            System.out.println("body " + context.body());
+            Product productResponse = new Product(title, description, imagePath, price, category, size);
+            productResponse.setId(curId);
+            //            System.out.printf("%d %s %s %s %d",
+//                    productResponse.getId(),
+//                    productResponse.getDescription(),
+//                    productResponse.getImage(),
+//                    productResponse.getTitle(),
+//                    productResponse.getPrice()
+//            );
+
+
+
+//            product.setTitle(productResponse.getTitle());
+//            product.setPrice(productResponse.getPrice());
+//            product.setCategory(category);
+//            product.setSize(size);
+//            product.setImage(productResponse.getImage());
+            repo.update(productResponse);
+            context.status(200).result("Product updated successfully");
+        } catch (NumberFormatException e) {
+            context.status(400).result("Invalid ID format");
+        }
+
+        context.json(context.body());
 
     }
 }

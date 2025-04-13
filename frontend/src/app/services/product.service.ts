@@ -34,4 +34,9 @@ export class ProductService {
   public getItemById(id: number) {
     return this.http.get(`${this.httpSource}/products/${id}`);
   }
+
+  public updateById(id: number, data: FormData) {
+    console.log("id", id);
+    return this.http.post(`${this.httpSource}/products/${id}`, data);
+  }
 }
