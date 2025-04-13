@@ -133,10 +133,20 @@ export class AdminComponent {
           formData.append('image', this.selectedCategoryImage);
         }
 
-        // console.log(Object.fromEntries(formData))
         const title = Object.fromEntries(formData)['title'];
         console.log(title as string)
-        // this.categoryService.updateCategory(title as string)
+
+        // console.log(this.currentIdItem)
+        this.categoryService.updateById(this.currentIdItem, formData).subscribe(category => {
+          this.closeModal()
+          this.chosedCategory = '';
+
+          this.categoryForm.reset();
+
+          this.categoryService.getCategories().subscribe(categories => {
+            this.categories = categories as Category[];
+          })
+        })
       }
       else if (this.chosedCategory === 'Item') {
         const data = {...this.itemForm.value};

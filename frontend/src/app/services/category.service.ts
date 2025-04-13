@@ -36,4 +36,9 @@ export class CategoryService {
   public deleteCategory(id: number) {
     return this.http.delete(`${this.httpSource}/categories/${id}`);
   }
+
+  public updateById(id: number, data: FormData) {
+    console.log("id", id);
+    return this.http.post(`${this.httpSource}/categories/${id}`, data);
+  }
 }

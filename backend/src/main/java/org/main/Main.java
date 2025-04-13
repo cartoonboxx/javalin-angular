@@ -36,6 +36,7 @@ public class Main {
         app.post("/categories", categoryController::create);
         app.delete("/categories/{id}", categoryController::delete);
         app.get("/categories/{name}", categoryController::getByName);
+        app.post("/categories/{id}", categoryController::update);
 
     }
 }

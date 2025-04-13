@@ -4,6 +4,7 @@ import org.main.models.Category;
 import org.main.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.main.models.Product;
 
 import java.util.List;
 
@@ -62,6 +63,35 @@ public class CategoryRepository {
         } catch (Exception e) {
             e.printStackTrace();
             return null; // Возвращаем null в случае ошибки
+        }
+    }
+
+    public void update(Category category) {
+        if (category.getId() == null) {
+            throw new IllegalArgumentException("Category ID cannot be null");
+        }
+
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+
+            // Проверяем, существует ли объект с таким id
+            Category existingCategory = session.get(Category.class, category.getId());
+            if (existingCategory == null) {
+                throw new IllegalArgumentException("Category with ID " + category.getId() + " does not exist");
+            }
+
+            // Обновляем объект
+            session.merge(category);
+            tx.commit();
+        } catch (Exception ex) {
+            if (tx != null && tx.getStatus().canRollback()) {
+                try {
+                    tx.rollback();
+                } catch (Exception rollbackEx) {
+                    System.err.println("⚠️ Rollback failed: " + rollbackEx.getMessage());
+                }
+            }
         }
     }
 }
