@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+
+interface Image {
+  thumb: string;
+  full: string;
+}
 
 @Component({
   selector: 'app-gallery',
@@ -7,33 +12,31 @@ import { Component } from '@angular/core';
   styleUrl: './gallery.component.scss'
 })
 export class GalleryComponent {
-  images = [
-    {
-      thumb: 'assets/sofa 1.png',
-      full: 'assets/sofa 1.png'
-    },
-    {
-      thumb: 'assets/sofa 2.png',
-      full: 'assets/sofa 2.png'
-    },
-    {
-      thumb: 'assets/sofa 3.png',
-      full: 'assets/sofa 3.png'
-    },
-    {
-      thumb: 'assets/sofa 4.png',
-      full: 'assets/sofa 4.png'
-    },
-    {
-      thumb: 'assets/sofa 5.png',
-      full: 'assets/sofa 5.png'
-    }
-  ];
+
+  public serverURL: string = 'http://localhost:7070/';
+
+  public imagesData!: Image[];
 
   currentIndex = 0;
 
+  @Input("images") public images!: string[];
+
+  constructor() {
+
+    console.log("data in gallery", this.images)
+  }
+
+  ngOnInit() {
+    this.imagesData = this.images.map(item => {
+      return {
+        thumb: this.serverURL + item,
+        full: this.serverURL + item
+      }
+    })
+  }
+
   get selectedImage() {
-    return this.images[this.currentIndex].full;
+    return this.imagesData[this.currentIndex].full;
   }
 
   selectImage(index: number) {

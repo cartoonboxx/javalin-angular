@@ -105,6 +105,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    a {
+      width: 100%;
+      text-decoration: none;
+      @include to-center;
+      color: var(--black-02);
+      padding: 15px;
+    }
+
     h1 {
       font-weight: 400;
       user-select: none;
@@ -135,9 +144,11 @@
 
           .item {
             display: flex;
+            box-sizing: border-box;
             gap: 10px;
             padding: 20px;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+            width: auto;
 
             &:hover {
               transform: scale(1.02);
@@ -148,6 +159,7 @@
           }
 
           .product {
+            width: fit-content;
 
             img {
               max-width: 120px;

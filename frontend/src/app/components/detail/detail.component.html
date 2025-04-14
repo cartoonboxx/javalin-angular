@@ -7,7 +7,8 @@
     </ul>
 
     <div class="container">
-      <app-gallery></app-gallery>
+      <app-gallery [images]="currentItem.image"></app-gallery>
+<!--      <app-gallery></app-gallery>-->
       <div class="description">
         <div class="stars">
           <img src="icons/star full.svg" alt="">
@@ -20,7 +21,7 @@
         <a routerLink="/products/{{ currentItem.category.link }}">{{ currentItem.category.title }}</a>
         <div class="section">
           <span>{{ currentItem.price * countItem }}₽</span>
-          <button>Купить</button>
+          <button (click)="addToCart(currentItem, $event, countItem)">Купить</button>
         </div>
         <div class="section">
           <div class="input">
@@ -50,160 +51,30 @@
     <div class="hits">
       <h1 class="section-title">Хиты продаж</h1>
       <div class="items">
-        <a class="item" routerLink="products/chairs/1">
-          <img src="assets/chair.png" alt="img">
-          <h1>Валенсия Beige</h1>
-          <p>Барные стулья</p>
-          <span>2 300₽</span>
+        <a class="item" routerLink="/products/{{ product.category.link }}/{{ product.id }}" *ngFor="let product of hitsProducts">
+          <img [src]="serverURL + product.image[0]" alt="img">
+          <h1>{{ product.title }}</h1>
+          <p>{{ product.category.title }}</p>
+          <span>{{ product.price }}₽</span>
           <div class="extra">
             <p>Размеры</p>
             <div class="sizes">
               <div class="size">
                 <p>Ширина</p>
-                <span>43 см</span>
+                <span>{{ product.size.width }} см</span>
               </div>
               x
               <div class="size">
                 <p>Глубина</p>
-                <span>43 см</span>
+                <span>{{ product.size.length }} см</span>
               </div>
               x
               <div class="size">
                 <p>Высота</p>
-                <span>77 см</span>
+                <span>{{ product.size.height }} см</span>
               </div>
             </div>
-            <button>Добавить в корзину</button>
-          </div>
-        </a >
-        <a class="item" routerLink="products/chairs/1">
-          <img src="assets/chair.png" alt="img">
-          <h1>Валенсия Beige</h1>
-          <p>Барные стулья</p>
-          <span>2 300₽</span>
-          <div class="extra">
-            <p>Размеры</p>
-            <div class="sizes">
-              <div class="size">
-                <p>Ширина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Глубина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Высота</p>
-                <span>77 см</span>
-              </div>
-            </div>
-            <button>Добавить в корзину</button>
-          </div>
-        </a >
-        <a class="item" routerLink="products/chairs/1">
-          <img src="assets/chair.png" alt="img">
-          <h1>Валенсия Beige</h1>
-          <p>Барные стулья</p>
-          <span>2 300₽</span>
-          <div class="extra">
-            <p>Размеры</p>
-            <div class="sizes">
-              <div class="size">
-                <p>Ширина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Глубина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Высота</p>
-                <span>77 см</span>
-              </div>
-            </div>
-            <button>Добавить в корзину</button>
-          </div>
-        </a >
-        <a class="item" routerLink="products/chairs/1">
-          <img src="assets/chair.png" alt="img">
-          <h1>Валенсия Beige</h1>
-          <p>Барные стулья</p>
-          <span>2 300₽</span>
-          <div class="extra">
-            <p>Размеры</p>
-            <div class="sizes">
-              <div class="size">
-                <p>Ширина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Глубина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Высота</p>
-                <span>77 см</span>
-              </div>
-            </div>
-            <button>Добавить в корзину</button>
-          </div>
-        </a >
-        <a class="item" routerLink="products/chairs/1">
-          <img src="assets/chair.png" alt="img">
-          <h1>Валенсия Beige</h1>
-          <p>Барные стулья</p>
-          <span>2 300₽</span>
-          <div class="extra">
-            <p>Размеры</p>
-            <div class="sizes">
-              <div class="size">
-                <p>Ширина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Глубина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Высота</p>
-                <span>77 см</span>
-              </div>
-            </div>
-            <button>Добавить в корзину</button>
-          </div>
-        </a >
-        <a class="item" routerLink="products/chairs/1">
-          <img src="assets/chair.png" alt="img">
-          <h1>Валенсия Beige</h1>
-          <p>Барные стулья</p>
-          <span>2 300₽</span>
-          <div class="extra">
-            <p>Размеры</p>
-            <div class="sizes">
-              <div class="size">
-                <p>Ширина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Глубина</p>
-                <span>43 см</span>
-              </div>
-              x
-              <div class="size">
-                <p>Высота</p>
-                <span>77 см</span>
-              </div>
-            </div>
-            <button>Добавить в корзину</button>
+            <button (click)="addToCart(product, $event)">Добавить в корзину</button>
           </div>
         </a >
       </div>

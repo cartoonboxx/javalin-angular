@@ -7,14 +7,11 @@
   </button>
 
   <div class="dropdown" [class.active]="isOpen">
-    <div class="dropdown-item">
+    <div class="dropdown-item" (click)="changeTypeSort(1)">
       <p>по убыванию цены</p>
     </div>
-    <div class="dropdown-item">
+    <div class="dropdown-item" (click)="changeTypeSort(2)">
       <p>по возрастанию цены</p>
-    </div>
-    <div class="dropdown-item">
-      <p>по популярности</p>
     </div>
   </div>
 </div>

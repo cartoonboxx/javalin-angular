@@ -46,23 +46,18 @@ public class CategoryRepository {
 
     public Category getByName(String name) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // Выполняем запрос для получения всех категорий
             List<Category> categories = session.createQuery("FROM Category", Category.class).list();
 
-            // Итерируем по списку категорий и ищем по названию
             for (Category category : categories) {
-                System.out.println("search " + category.getTitle());
-                // Сравниваем название категории с переданным значением
                 if (category.getLink().equals(name)) {
-                    return category; // Возвращаем найденную категорию
+                    return category;
                 }
             }
 
-            // Если категория не найдена, возвращаем null
             return null;
         } catch (Exception e) {
             e.printStackTrace();
-            return null; // Возвращаем null в случае ошибки
+            return null;
         }
     }
 
@@ -75,13 +70,11 @@ public class CategoryRepository {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
 
-            // Проверяем, существует ли объект с таким id
             Category existingCategory = session.get(Category.class, category.getId());
             if (existingCategory == null) {
                 throw new IllegalArgumentException("Category with ID " + category.getId() + " does not exist");
             }
 
-            // Обновляем объект
             session.merge(category);
             tx.commit();
         } catch (Exception ex) {
@@ -89,7 +82,7 @@ public class CategoryRepository {
                 try {
                     tx.rollback();
                 } catch (Exception rollbackEx) {
-                    System.err.println("⚠️ Rollback failed: " + rollbackEx.getMessage());
+                    System.err.println("Rollback failed: " + rollbackEx.getMessage());
                 }
             }
         }

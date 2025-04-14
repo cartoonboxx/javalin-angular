@@ -10,7 +10,7 @@
     </div>
     <div class="container">
       <a class="item" routerLink="/products/{{ category.link }}/{{ product.id }}" *ngFor="let product of products">
-        <img src="{{serverURL + product.image}}" alt="img">
+        <img src="{{ serverURL + product.image[0] }}" alt="img">
         <h1>{{ product.title }}</h1>
         <p>{{ category.title }}</p>
         <span>{{ product.price }}₽</span>
@@ -32,7 +32,7 @@
               <span>{{ product.size.height }} см</span>
             </div>
           </div>
-          <button>Добавить в корзину</button>
+          <button (click)="addToCart(product, $event)">Добавить в корзину</button>
         </div>
       </a >
     </div>

@@ -20,9 +20,7 @@ export class ProductService {
 
   public createItem(item: FormData) {
     const currentData = Object.fromEntries(item);
-    console.log(currentData);
-    console.log(currentData['size'])
-    console.log(currentData['category'])
+    // console.log(currentData['image'])
     // currentData['size'] = JSON.parse(currentData['size']);
     return this.http.post(`${this.httpSource}/products`, item);
   }

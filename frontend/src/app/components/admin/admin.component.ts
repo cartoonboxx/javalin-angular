@@ -16,7 +16,7 @@ export class AdminComponent {
   public titleModal!: string;
 
   public selectedCategoryImage: File | null = null;
-  public selectedItemImage: File | null = null;
+  public selectedItemImage: FileList | null = null;
 
   public isShowModal: boolean = false;
   public chosedCategory: string = '';
@@ -103,10 +103,15 @@ export class AdminComponent {
             height: data.height
           }));
           if (this.selectedItemImage) {
-            formData.append('image', this.selectedItemImage);
+
+            for (let file of this.selectedItemImage) {
+              formData.append("image", file); // реальный файл, а не JSON
+            }
           }
 
-          console.log(Object.fromEntries(formData))
+          for (let [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+          }
 
           this.productService.createItem(formData).subscribe(item => {
             this.isShowModal = false;
@@ -174,10 +179,11 @@ export class AdminComponent {
             height: data.height
           }));
           if (this.selectedItemImage) {
-            formData.append('image', this.selectedItemImage);
+            for (let file of this.selectedItemImage) {
+              formData.append("image", file); // реальный файл, а не JSON
+            }
           }
 
-          console.log(Object.fromEntries(formData))
           // let dataRequest = formData.get("");
           this.productService.updateById(this.currentIdItem, formData).subscribe(item => {
             this.isShowModal = false;
@@ -236,18 +242,16 @@ export class AdminComponent {
     console.log("here")
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      const file = input.files[0];
+      const files = input.files;
       if (type === 'Category') {
-        this.selectedCategoryImage = file;
+        this.selectedCategoryImage = files[0];
       } else {
-        this.selectedItemImage = file;
+        this.selectedItemImage = files;
       }
     }
   }
 
   public showDetails(item: Item | Category): void {
-
-
     this.currentIdItem = item.id as number;
     if ('price' in item) {
       // Товары

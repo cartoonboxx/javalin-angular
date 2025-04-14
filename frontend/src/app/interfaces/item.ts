@@ -13,11 +13,12 @@ export interface Category {
 }
 
 export interface Item {
-  id: number;
+  id?: number;
   title: string;
   description: string;
-  image: string;
+  image: string[];
   price: number;
   category: Category;
   size: Size;
+  count?: number;
 }

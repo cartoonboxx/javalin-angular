@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import { Item } from '../../interfaces/item';
 import {Subscription} from 'rxjs';
+import {BasketService} from '../../services/basket.service';
 
 @Component({
   selector: 'app-index',
@@ -16,7 +17,11 @@ export class IndexComponent {
   public products!: Item[];
   public productSubscription!: Subscription;
 
-  constructor(private productService: ProductService) {
+  constructor(
+    private productService: ProductService,
+    private basketService: BasketService
+  ) {
+
   }
 
   ngOnInit() {
@@ -24,6 +29,13 @@ export class IndexComponent {
       this.products = products as Item[];
       console.log('prods', this.products);
     })
+  }
+
+  public addToCart(product: Item, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    product.count = 1;
+    this.basketService.addToCart(product);
   }
 
 }

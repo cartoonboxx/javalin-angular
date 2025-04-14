@@ -21,7 +21,7 @@
             <div class="input">
               <label class="custom-file-upload">
                 <input type="file" (change)="onFileSelected($event, 'Category')" />
-                Прикрепить фото (от 1 шт.)
+                Прикрепить фото
               </label>
             </div>
           </div>
@@ -65,7 +65,7 @@
           <div *ngIf="field === 'image'">
             <div class="input">
               <label class="custom-file-upload">
-                <input type="file" (change)="onFileSelected($event, 'Item')" />
+                <input type="file" (change)="onFileSelected($event, 'Item')" multiple/>
                 Прикрепить фото (от 1 шт.)
               </label>
             </div>
@@ -81,9 +81,8 @@
       </form>
     </div>
 
-
-
     <div class="panel">
+      <a routerLink="/">Вернуться на главную</a>
       <h1>Админ-панель</h1>
       <div class="content">
         <div class="block">
@@ -102,7 +101,7 @@
           <h2>Товары</h2>
           <div class="items">
             <div (click)="showDetails(product)" class="item product" *ngFor="let product of products">
-              <img [src]="serverURL + product.image" alt="">
+              <img [src]="serverURL + product.image[0]" alt="">
               <h3>{{ product.title }}</h3>
             </div>
           </div>

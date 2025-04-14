@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {Item} from '../../interfaces/item';
 import {Router} from '@angular/router';
+import {filter} from 'rxjs';
+import {BasketService} from '../../services/basket.service';
 
 @Component({
   selector: 'app-detail',
@@ -15,34 +17,51 @@ export class DetailComponent {
 
   public countItem: number = 1;
 
-  constructor(public productService: ProductService, public router: Router ) {
+  public hitsProducts!: Item[];
 
-  }
+  public serverURL: string = 'http://localhost:7070/';
 
-  ngOnInit() {
+  constructor(
+    public productService: ProductService,
+    public router: Router,
+    private basketService: BasketService,
+  ) {
     const linkSplitted = this.router.url.split('/');
     const id: number = Number(linkSplitted[linkSplitted.length - 1]);
 
     this.productService.getItemById(id).subscribe((product) => {
+      console.log("Получил текущий объект", product);
       this.currentItem = product as Item;
+
+      this.productService.getItems().subscribe((products: Item[]) => {
+        this.hitsProducts = products.filter((item: Item | null) => {
+          if (item == null) {
+            return null;
+          }
+
+          if (item.id !== this.currentItem.id) {
+            return item;
+          }
+
+          return null;
+        });
+      })
     })
+
+
   }
 
-  blockMinus(event: KeyboardEvent): void {
-    if (event.key === '-' || event.key === 'e') {
-      event.preventDefault();
-    }
+  ngOnInit() {
+
   }
 
-  preventNegative(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const value = input.value;
+  public addToCart(product: Item, event: Event, count: number = 1): void {
+    event.preventDefault();
+    event.stopPropagation();
+    product.count = count;
+    this.basketService.addToCart(product);
 
-    // Убираем всё, что меньше 1
-    if (+value < 1) {
-      input.value = '1';
-      this.countItem = 1;
-    }
+    this.countItem = 1;
   }
 
 }

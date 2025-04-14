@@ -13,9 +13,9 @@ public class HibernateUtil {
         try {
             Configuration config = new Configuration();
             config.configure();
-            config.addAnnotatedClass(Product.class); // подключаем сущности
-            config.addAnnotatedClass(Size.class); // подключаем сущности
-            config.addAnnotatedClass(Category.class); // подключаем сущности
+            config.addAnnotatedClass(Product.class);
+            config.addAnnotatedClass(Size.class);
+            config.addAnnotatedClass(Category.class);
 
             config.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
             config.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/shopdb");

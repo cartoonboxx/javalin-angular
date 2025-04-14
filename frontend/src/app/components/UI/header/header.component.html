@@ -52,17 +52,22 @@
           </a>
         </ul>
       </div>
+
       <a routerLink="/" class="logo"><img src="LOGO.svg" alt=""></a>
-      <form action="search/" class="search-block__input">
+
+      <form action="/search" class="search-block__input" (ngSubmit)="findItem()">
         <img src="icons/search-icon.svg" alt="">
-        <input type="text" placeholder="Поиск" name="q" [value]="inputValue">
+        <input type="text" placeholder="Поиск" name="q" [(ngModel)]="inputValue">
       </form>
+
       <div class="search-block__delivery">
         <img src="icons/delivery-black.svg" alt="notimg">
         <a>Доставка</a>
       </div>
+
       <a routerLink="/basket/" class="search-block__bag">
         <img src="icons/bag.svg" alt="">
+        <div class="red-circle" *ngIf="basketService.products.length > 0"></div>
       </a>
     </div>
   </div>
@@ -73,7 +78,7 @@
           <img src="{{ serverURL + category.image }}" alt="">
           <li>{{ category.title }}</li>
         </a>
-        <div class="kebab-wrapper">
+        <div class="kebab-wrapper" *ngIf="categories.length > 5">
           <input type="checkbox" id="menu-toggle" class="kebab-toggle" />
           <label for="menu-toggle" class="kebab-icon">
             <span></span>
@@ -81,10 +86,7 @@
             <span></span>
           </label>
           <div class="kebab-menu">
-            <a href="#">Новинки</a>
-            <a href="#">Шкафы</a>
-            <a href="#">Матрасы</a>
-            <a href="#">Мягкая мебель</a>
+            <a *ngFor="let category of categories" routerLink="/products/{{ category.link }}">{{ category.title }}</a>
           </div>
         </div>
       </ul>

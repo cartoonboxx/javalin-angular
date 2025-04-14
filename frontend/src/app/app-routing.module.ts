@@ -9,11 +9,13 @@ import {CategoryComponent} from './components/category/category.component';
 import {SearchComponent} from './components/search/search.component';
 import {BasketComponent} from './components/basket/basket.component';
 import {AdminComponent} from './components/admin/admin.component';
+import {ProductsComponent} from './components/products/products.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contacts', component: ContactsComponent},
+  {path: 'products', component: ProductsComponent},
   {path: 'products/:category', component: CategoryComponent},
   {path: 'products/:category/:id', component: DetailComponent},
   {path: 'search', component: SearchComponent},

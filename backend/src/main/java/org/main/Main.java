@@ -11,7 +11,6 @@ public class Main {
         CategoryController categoryController = new CategoryController();
 
         Javalin app = Javalin.create(config -> {
-            // Разрешаем CORS для конкретных доменов
             config.bundledPlugins.enableCors(cors -> {
                 cors.addRule(corsConfig -> {
                     corsConfig.allowHost("http://localhost:4200");
@@ -19,16 +18,15 @@ public class Main {
             });
             config.staticFiles.add(staticFileConfig -> {
                 staticFileConfig.hostedPath = "/uploads";
-                staticFileConfig.directory = "uploads"; // локальная папка на диске
-                staticFileConfig.location = Location.EXTERNAL; // ВАЖНО
+                staticFileConfig.directory = "uploads";
+                staticFileConfig.location = Location.EXTERNAL;
             });
         }).start(7070);
-
-        app.get("/test", ctx -> {ctx.result("test");});
 
         app.get("/products", productController::getAll);
         app.get("/products/{id}", productController::getById);
         app.delete("/products/{id}", productController::delete);
+        app.delete("/products", productController::deleteAll);
         app.post("/products", productController::create);
         app.post("/products/{id}", productController::update);
 

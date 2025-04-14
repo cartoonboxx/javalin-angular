@@ -13,6 +13,11 @@
     padding: 0;
   }
 
+  .is-empty {
+    padding: 150px 0;
+    text-align: center;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -44,13 +49,19 @@
 
       box-shadow: 0 2px 4px #00000012;
 
+      text-decoration: none;
+
+      h1 {
+        color: var(--black-02);
+      }
+
       .img {
         padding: 22px 20px;
         width: fit-content;
         height: 100%;
         @include to-center();
         img {
-          width: 100%;
+          width: 140px;
         }
       }
 

@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import Link from '../../../interfaces/link';
 import { Category } from '../../../interfaces/item'
 import {CategoryService} from '../../../services/category.service';
+import {BasketService} from '../../../services/basket.service';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +40,11 @@ export class HeaderComponent {
 
   public categories!: Category[];
 
-  constructor(protected headerService: HeaderService, private categoryService: CategoryService) {
+  constructor(
+    protected headerService: HeaderService,
+    private categoryService: CategoryService,
+    public basketService: BasketService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -58,6 +63,11 @@ export class HeaderComponent {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  public findItem(): void {
+    this.router.navigate(['/search'], { queryParams: { q: this.inputValue } });
+    console.log("Поиск прошел")
   }
 
 }

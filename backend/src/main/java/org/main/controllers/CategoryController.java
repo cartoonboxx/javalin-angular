@@ -29,18 +29,16 @@ public class CategoryController {
     }
 
     public void create(Context context) throws Exception {
-        // 1. Получаем текстовые поля
+
         String title = context.formParam("title");
         String link = context.formParam("link");
 
-        // 2. Обработка файла
         UploadedFile uploadedFile = context.uploadedFile("image");
         if (uploadedFile == null) {
             context.status(400).result("Image is required");
             return;
         }
 
-        // 3. Сохраняем файл
         String uploadDir = "uploads/categories/";
         Files.createDirectories(Path.of(uploadDir));
         String imagePath = uploadDir + uploadedFile.filename();
@@ -49,11 +47,10 @@ public class CategoryController {
             Files.copy(is, Path.of(imagePath), StandardCopyOption.REPLACE_EXISTING);
         }
 
-        // 4. Создаём Category
         Category category = new Category();
         category.setTitle(title);
         category.setLink(link);
-        category.setImage(imagePath); // путь к сохранённому изображению
+        category.setImage(imagePath);
 
         repo.save(category);
         context.status(201);

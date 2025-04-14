@@ -2,6 +2,8 @@ package org.main.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -12,21 +14,25 @@ public class Product {
 
     private String title;
     private String description;
-    private String image;
+
+    @ElementCollection
+    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "image_path")
+    private List<String> image;
     private Integer price;
 
     @ManyToOne
-    @JoinColumn(name = "category_id") // внешний ключ к Category
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "size_id") // внешний ключ к Category
+    @JoinColumn(name = "size_id")
     private Size size;
 
 
     public Product() {}
 
-    public Product(String title, String description, String image, Integer price, Category category, Size size) {
+    public Product(String title, String description, List<String> image, Integer price, Category category, Size size) {
         this.title = title;
         this.description = description;
         this.image = image;
@@ -35,8 +41,6 @@ public class Product {
         this.size = size;
 
     }
-
-    // геттеры и сеттеры
 
     public Long getId() {
         return id;
@@ -62,11 +66,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getImage() {
+    public List<String> getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(List<String> image) {
         this.image = image;
     }
 
