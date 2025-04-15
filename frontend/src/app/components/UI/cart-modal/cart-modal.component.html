@@ -1,0 +1,7 @@
+<div class="modal" [class.active]="isActive" (click)="hideModal()">
+  <div class="content">
+    <p>Добавлено:</p>
+    <p *ngIf="currentProduct">{{ currentProduct.title }}, {{ currentProduct.count ?? 1 }}шт.</p>
+  </div>
+  <a routerLink="/basket">Перейти в корзину</a>
+</div>

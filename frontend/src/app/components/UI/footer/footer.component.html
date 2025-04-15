@@ -5,19 +5,31 @@
         <h1>Навигация</h1>
         <div class="footer__navs-list">
           <ul>
-            <a><li>Кухни</li></a>
-            <a><li>Спальни</li></a>
-            <a><li>Гостиные</li></a>
+            <a
+              routerLink="/products/{{ category.link }}"
+              *ngFor="let category of categories.slice(0, 3)"
+            ><li>
+              {{ category.title }}
+            </li>
+            </a>
           </ul>
           <ul>
-            <a><li>Прихожие</li></a>
-            <a><li>Офисная мебель</li></a>
-            <a><li>Детская</li></a>
+            <a
+              routerLink="/products/{{ category.link }}"
+              *ngFor="let category of categories.slice(3, 6)"
+            ><li>
+              {{ category.title }}
+            </li>
+            </a>
           </ul>
           <ul>
-            <a><li>Шкафы</li></a>
-            <a><li>Матрасы</li></a>
-            <a><li>Мягкая мебель</li></a>
+            <a
+              routerLink="/products/{{ category.link }}"
+              *ngFor="let category of categories.slice(6, 10)"
+            ><li>
+              {{ category.title }}
+            </li>
+            </a>
           </ul>
         </div>
 
@@ -30,8 +42,8 @@
     <div class="contacts-other">
       <div class="links">
         <div class="footer__navs-footer">
-          <a>Акция</a>
-          <a>Новинки</a>
+          <a routerLink="/about">О нас</a>
+          <a routerLink="/products">Товары</a>
         </div>
       </div>
       <div class="info">

@@ -1,3 +1,6 @@
-<app-header *ngIf="!isAdminPanel"></app-header>
+<ng-container *ngIf="!isAdminPanel">
+  <app-header></app-header>
+  <app-cart-modal></app-cart-modal>
+</ng-container>
 <router-outlet></router-outlet>
 <app-footer *ngIf="!isAdminPanel"></app-footer>

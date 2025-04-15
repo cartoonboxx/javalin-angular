@@ -1,5 +1,6 @@
 <main class="main">
   <div class="site-container">
+    <app-sendcart></app-sendcart>
     <ul class="navigation-route">
       <a routerLink="/"><li>Главная</li></a>
       /
@@ -40,7 +41,7 @@
       </div>
       <div class="footer">
         <p>Итоговая стоимость: <span>{{ price }}₽</span></p>
-        <button>Оформить заказ</button>
+        <button (click)="createCart()">Оформить заказ</button>
       </div>
     </div>
     <div class="basket" *ngIf="products.length === 0">

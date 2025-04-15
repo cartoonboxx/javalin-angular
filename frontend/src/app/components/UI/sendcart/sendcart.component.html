@@ -1,0 +1,26 @@
+<div class="modal" [class.active]="isShowModal">
+  <div class="modal-surf" [class.active]="isShowModal" (click)="hideModal()">
+
+  </div>
+  <form (ngSubmit)="saveAndSend()" class="modal-form" [formGroup]="formSend">
+    <div class="cart">
+      <h1>Ваш заказ</h1>
+      <div class="item" *ngFor="let item of cartItems">
+        <img [src]="serverURL + item.image[0]" alt="">
+        <h2>{{ item.title }}</h2>
+      </div>
+      <span class="sum">Сумма заказа: {{ priceResult }}₽</span>
+    </div>
+    <div class="inputs">
+      <div class="input">
+        <label for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" formControlName="name">
+      </div>
+      <div class="input">
+        <label for="name">Номер телефона</label>
+        <input type="text" id="phone" name="phone" formControlName="phone">
+      </div>
+      <button type="submit">Отправить</button>
+    </div>
+  </form>
+</div>

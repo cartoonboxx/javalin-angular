@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {BasketService} from '../../services/basket.service';
 import {Item} from '../../interfaces/item';
-import {Subscription} from 'rxjs';
+import {interval, Subscription} from 'rxjs';
 import {ProductService} from '../../services/product.service';
 
 @Component({
@@ -18,6 +18,8 @@ export class BasketComponent {
   public price!: number;
   private productsSub!: Subscription;
 
+  public isShowCreatingCart!: boolean;
+
   public serverURL: string = 'http://localhost:7070/';
 
   private basketService = inject(BasketService);
@@ -27,7 +29,14 @@ export class BasketComponent {
   ) {
     this.products = this.basketService.products;
     console.log(this.products);
-    this.price = this.basketService.price;
+    this.basketService.calcPrice();
+
+    this.price = this.products.reduce((prev, curr) => {
+      if (curr.count) {
+        return prev + curr.price * curr.count;
+      }
+      return prev + curr.price
+    }, 0);
 
     this.productsSub = this.basketService.productSubject.subscribe((products: Item[]) => {
       console.log("from subj2", products)
@@ -38,6 +47,10 @@ export class BasketComponent {
       this.productsYouLike = products;
       console.log(this.productsYouLike);
     })
+
+    this.basketService.statusSubject.subscribe(status => {
+      this.isShowCreatingCart = status;
+    });
   }
 
   ngOnInit() {
@@ -63,6 +76,11 @@ export class BasketComponent {
 
     this.basketService.deleteFromCart(product);
     this.basketService.calcPrice();
+  }
+
+  public createCart() {
+    this.isShowCreatingCart = true;
+    this.basketService.statusSubject.next(this.isShowCreatingCart)
   }
 
   ngOnDestroy() {

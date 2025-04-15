@@ -5,45 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e96a2d25-b1e1-4504-a24c-1821df9873a0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/main/controllers/TelegramController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/Data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/HibernateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/HibernateUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/controllers/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/controllers/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/repositories/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/repositories/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/dropdown/dropdown.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/dropdown/dropdown.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/dropdown/dropdown.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/dropdown/dropdown.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/gallery/gallery.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/gallery/gallery.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/gallery/gallery.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/gallery/gallery.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/header/header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/slider/slider.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/slider/slider.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/admin/admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/admin/admin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/footer/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/footer/footer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/footer/footer.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/UI/footer/footer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/UI/footer/footer.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/admin/admin.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/admin/admin.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/admin/admin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/admin/admin.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/basket/basket.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/basket/basket.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/basket/basket.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/basket/basket.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/basket/basket.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/basket/basket.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/category/category.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/category/category.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/category/category.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/category/category.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/category/category.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/category/category.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/detail/detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/detail/detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/detail/detail.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/detail/detail.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/detail/detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/detail/detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/index/index.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/index/index.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/index/index.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/index/index.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/index/index.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/index/index.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/search/search.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/search/search.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/search/search.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/search/search.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/components/search/search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/components/search/search.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/interfaces/item.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/interfaces/item.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/services/product.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/services/product.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/services/basket.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/services/basket.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

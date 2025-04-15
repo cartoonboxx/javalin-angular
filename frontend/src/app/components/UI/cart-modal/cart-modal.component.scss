@@ -1,0 +1,86 @@
+@use 'mixins' as *;
+
+.modal {
+  width: 0px;
+  height: auto;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  color: white;
+  border-radius: 10px;
+
+  transform: translate(150%, -150%);
+  transition: .4s;
+
+  gap: 10px;
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .1);
+
+  .content {
+    padding: 20px;
+    display: flex;
+    @include mobile-view() {
+      @include to-center;
+    }
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 0;
+  }
+
+  &.active {
+    opacity: 1;
+    transition: .4s;
+    width: 300px;
+    transform: translate(0%, 0%);
+  }
+
+  @include mobile-view() {
+    transform: translate(0%, -150%);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    border-radius: 0;
+    padding-bottom: 20px;
+
+    @include to-center();
+
+    &.active {
+      width: 100vw;
+    }
+  }
+
+  a {
+    @include to-center;
+
+    padding: 10px 30px;
+    border-radius: 0 0 10px 10px;
+    background-color: white;
+    text-decoration: none;
+    color: var(--black-02);
+    transition: .2s;
+
+    @include desktop-view() {
+      width: 100%;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #245462;
+      color: white;
+      transition: .2s;
+    }
+
+    @include mobile-view() {
+      border-radius: 0;
+    }
+
+  }
+
+}

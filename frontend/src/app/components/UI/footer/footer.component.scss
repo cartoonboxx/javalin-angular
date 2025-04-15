@@ -38,7 +38,11 @@
         flex-direction: column;
         gap: 7px;
         font-size: 14px;
-        color: #414141;
+
+        a {
+          text-decoration: none;
+          color: var(--black-02);
+        }
       }
     }
 
@@ -47,8 +51,15 @@
       gap: 30px;
       color: #414141;
       font-size: 14px;
-      a:nth-child(1) {
-        color: #D74444;
+
+      a {
+        text-decoration: none;
+        color: var(--black-02);
+
+        &:nth-child(1) {
+          color: #D74444;
+          width: 40px;
+        }
       }
     }
   }

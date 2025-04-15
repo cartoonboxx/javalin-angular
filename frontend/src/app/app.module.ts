@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PositiveNumberOnlyDirective } from './directives/positive-number-only.directive';
 import { ProductsComponent } from './components/products/products.component';
+import { CartModalComponent } from './components/UI/cart-modal/cart-modal.component';
+import { SendcartComponent } from './components/UI/sendcart/sendcart.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ProductsComponent } from './components/products/products.component';
     AdminComponent,
     PositiveNumberOnlyDirective,
     ProductsComponent,
+    CartModalComponent,
+    SendcartComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {LocalStorageService} from './local-storage.service';
 import {Item} from '../interfaces/item';
-import {Subject} from 'rxjs';
+import {BehaviorSubject, Subject, Subscription} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,10 @@ export class BasketService {
   public products!: Item[];
   public productSubject: Subject<Item[]> = new Subject();
   public priceSubject: Subject<number> = new Subject();
+  public statusSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public price!: number;
+
+  public lastAddedItemSubj: Subject<Item> = new Subject();
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -29,6 +32,7 @@ export class BasketService {
         }
         return curr.price + prev;
       }, 0);
+      this.calcPrice();
     }
     this.productSubject.subscribe((products: Item[]) => {
       console.log("from subj", products)
@@ -75,6 +79,9 @@ export class BasketService {
     }
     this.localStorageService.setItem('products', JSON.stringify(this.products));
     this.productSubject.next(this.products);
+    this.calcPrice()
+
+    this.lastAddedItemSubj.next(product);
 
   }
 
@@ -89,4 +96,13 @@ export class BasketService {
     this.localStorageService.setItem('products', JSON.stringify(this.products));
     this.productSubject.next(this.products);
   }
+
+  public clearCart(): void {
+    this.products = [];
+    this.createCart();
+    this.productSubject.next(this.products);
+    this.calcPrice();
+  }
+
+
 }

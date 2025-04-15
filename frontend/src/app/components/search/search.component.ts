@@ -45,15 +45,15 @@ export class SearchComponent {
       this.typeSort = sort;
       this.productService.getItems().subscribe(products => {
         this.products = products.sort((a: Item, b: Item): number => {
-          if (a.price >= b.price && this.typeSort === 1) {
-            return -1;
+          if (this.typeSort === 2) {
+            return a.price - b.price;
+          } else if (this.typeSort === 1) {
+            return b.price - a.price;
           }
-          else {
-            return 1;
-          }
-        })
-      })
-    })
+          return 0;
+        });
+      });
+    });
   }
 
   ngOnDestroy() {

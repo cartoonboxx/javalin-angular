@@ -1,14 +1,17 @@
 package org.main;
 
 import io.javalin.Javalin;
+import io.javalin.http.Context;
 import io.javalin.http.staticfiles.Location;
 import org.main.controllers.CategoryController;
 import org.main.controllers.ProductController;
+import org.main.controllers.TelegramController;
 
 public class Main {
     public static void main(String[] args) {
         ProductController productController = new ProductController();
         CategoryController categoryController = new CategoryController();
+        TelegramController telegramController = new TelegramController();
 
         Javalin app = Javalin.create(config -> {
             config.bundledPlugins.enableCors(cors -> {
@@ -35,6 +38,8 @@ public class Main {
         app.delete("/categories/{id}", categoryController::delete);
         app.get("/categories/{name}", categoryController::getByName);
         app.post("/categories/{id}", categoryController::update);
+
+        app.post("sendtg", telegramController::sendDataTelegram);
 
     }
 }

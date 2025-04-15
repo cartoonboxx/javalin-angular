@@ -3,6 +3,7 @@ import { Item, Category } from '../../interfaces/item'
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../services/category.service';
 import {ProductService} from '../../services/product.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -43,7 +44,11 @@ export class AdminComponent {
     height: new FormControl('', Validators.required),
   });
 
-  constructor(public categoryService: CategoryService, public productService: ProductService) {
+  constructor(
+    public categoryService: CategoryService,
+    public productService: ProductService,
+    public router: Router,
+  ) {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories as Category[];
     })
@@ -184,7 +189,6 @@ export class AdminComponent {
             }
           }
 
-          // let dataRequest = formData.get("");
           this.productService.updateById(this.currentIdItem, formData).subscribe(item => {
             this.isShowModal = false;
             this.chosedCategory = '';
@@ -195,17 +199,6 @@ export class AdminComponent {
               this.products = products as Item[];
             })
           })
-          // this.productService.createItem(formData).subscribe(item => {
-          //   this.isShowModal = false;
-          //   this.chosedCategory = '';
-          //
-          //   this.itemForm.reset();
-          //
-          //   this.productService.getItems().subscribe(products => {
-          //     this.products = products as Item[];
-          //   })
-          //
-          // })
         })
       }
     }

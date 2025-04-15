@@ -1,0 +1,117 @@
+@use 'mixins' as *;
+
+
+
+
+.modal {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  @include to-center;
+  z-index: 1001;
+
+  display: none;
+
+  .modal-surf {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1000vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+
+    &.active {
+      display: flex;
+    }
+  }
+
+  &-form {
+    width: 600px;
+    height: 650px;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 1002;
+
+    @include mobile-view() {
+      width: 90%;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    .inputs {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .input {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          outline: none;
+          border: none;
+          height: 40px;
+          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+          padding: 0 10px;
+        }
+
+      }
+      button {
+        width: 100%;
+        height: 40px;
+        border: none;
+        background-color: #245462;
+        color: white;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .cart {
+      padding: 15px;
+      @include to-center();
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+
+      h1 {
+        font-size: 24px;
+        font-weight: 400;
+      }
+
+      .item {
+        display: flex;
+        padding: 20px;
+        width: 100%;
+        gap: 20px;
+        align-items: center;
+
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+
+        img {
+          width: 100px;
+        }
+
+        h2 {
+          font-size: 18px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  &.active {
+    display: flex;
+  }
+}
+
