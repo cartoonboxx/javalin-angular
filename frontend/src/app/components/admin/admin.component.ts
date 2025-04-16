@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../services/category.service';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {serverURL} from '../../global-variable';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +13,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent {
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   public titleModal!: string;
 

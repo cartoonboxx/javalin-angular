@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {Item} from '../../interfaces/item';
 import {BasketService} from '../../services/basket.service';
+import {serverURL} from '../../global-variable';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,7 @@ import {BasketService} from '../../services/basket.service';
 })
 export class ProductsComponent {
 
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   public products!: Item[];
 

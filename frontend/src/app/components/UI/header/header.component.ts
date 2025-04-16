@@ -6,6 +6,7 @@ import Link from '../../../interfaces/link';
 import { Category } from '../../../interfaces/item'
 import {CategoryService} from '../../../services/category.service';
 import {BasketService} from '../../../services/basket.service';
+import {serverURL} from '../../../global-variable';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ import {BasketService} from '../../../services/basket.service';
 })
 export class HeaderComponent {
 
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   public inputValue: string = '';
   private sub!: Subscription;

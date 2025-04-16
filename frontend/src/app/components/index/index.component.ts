@@ -3,6 +3,7 @@ import {ProductService} from '../../services/product.service';
 import { Item } from '../../interfaces/item';
 import {Subscription} from 'rxjs';
 import {BasketService} from '../../services/basket.service';
+import {serverURL} from '../../global-variable';
 
 @Component({
   selector: 'app-index',
@@ -12,7 +13,7 @@ import {BasketService} from '../../services/basket.service';
 })
 export class IndexComponent {
 
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   public products!: Item[];
   public productSubscription!: Subscription;

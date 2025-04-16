@@ -5,6 +5,7 @@ import {Item} from '../../interfaces/item';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {SortService} from '../../services/sort.service';
 import {BasketService} from '../../services/basket.service';
+import {serverURL} from '../../global-variable';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +17,7 @@ export class SearchComponent {
   private subscriptionProduct!: Subscription;
   private subscriptionSort!: Subscription;
 
-  public serverURL = 'http://localhost:7070/';
+  public serverURL = serverURL;
 
   public products!: Item[];
 

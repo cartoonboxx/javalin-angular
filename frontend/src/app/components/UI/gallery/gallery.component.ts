@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {serverURL} from '../../../global-variable';
 
 interface Image {
   thumb: string;
@@ -13,7 +14,7 @@ interface Image {
 })
 export class GalleryComponent {
 
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   public imagesData!: Image[];
 

@@ -3,6 +3,7 @@ import {BasketService} from '../../services/basket.service';
 import {Item} from '../../interfaces/item';
 import {interval, Subscription} from 'rxjs';
 import {ProductService} from '../../services/product.service';
+import {serverURL} from '../../global-variable';
 
 @Component({
   selector: 'app-basket',
@@ -20,7 +21,7 @@ export class BasketComponent {
 
   public isShowCreatingCart!: boolean;
 
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   private basketService = inject(BasketService);
 

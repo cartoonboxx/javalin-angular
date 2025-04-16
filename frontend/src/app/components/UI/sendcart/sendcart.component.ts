@@ -5,6 +5,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {platformBrowser} from '@angular/platform-browser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {serverURL} from '../../../global-variable';
 
 @Component({
   selector: 'app-sendcart',
@@ -16,7 +17,7 @@ export class SendcartComponent {
   public cartItems!: Item[];
   public priceResult: number = 0;
 
-  public serverURL = 'http://localhost:7070/';
+  public serverURL = serverURL;
 
   public isShowModal!: boolean;
 

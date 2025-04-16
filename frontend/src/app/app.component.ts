@@ -13,4 +13,8 @@ export class AppComponent {
 
   public isAdminPanel: boolean = this.adminService.isAdminPanelOpen();
 
+  constructor() {
+    console.log(this.isAdminPanel);
+  }
+
 }

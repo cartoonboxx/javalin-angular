@@ -4,6 +4,7 @@ import {Item} from '../../interfaces/item';
 import {Router} from '@angular/router';
 import {filter} from 'rxjs';
 import {BasketService} from '../../services/basket.service';
+import {serverURL} from '../../global-variable';
 
 @Component({
   selector: 'app-detail',
@@ -19,7 +20,7 @@ export class DetailComponent {
 
   public hitsProducts!: Item[];
 
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   constructor(
     public productService: ProductService,

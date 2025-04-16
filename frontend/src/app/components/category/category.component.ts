@@ -7,6 +7,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SortService} from '../../services/sort.service';
 import {BasketService} from '../../services/basket.service';
+import {serverURL} from '../../global-variable';
 
 @Component({
   selector: 'app-category',
@@ -24,7 +25,7 @@ export class CategoryComponent {
   public category!: Category;
   public products!: Item[];
 
-  public serverURL: string = 'http://localhost:7070/';
+  public serverURL: string = serverURL;
 
   public typeSort!: number;
 
