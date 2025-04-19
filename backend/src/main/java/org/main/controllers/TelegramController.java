@@ -17,8 +17,7 @@ import java.util.concurrent.CompletableFuture;
 public class TelegramController {
 
     public void sendDataTelegram(Context context) {
-
-        System.out.println("Hello!");
+        
         String message = context.formParam("message");
         String token = "7889645915:AAHSvhityM0wgTE-yd3cbbB2Eo7QTVd_9KY";
 
