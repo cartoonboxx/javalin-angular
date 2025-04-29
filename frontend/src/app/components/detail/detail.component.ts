@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {Item} from '../../interfaces/item';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {filter} from 'rxjs';
 import {BasketService} from '../../services/basket.service';
 import {serverURL} from '../../global-variable';
@@ -26,9 +26,17 @@ export class DetailComponent {
     public productService: ProductService,
     public router: Router,
     private basketService: BasketService,
+    private routerActive: ActivatedRoute
   ) {
     const linkSplitted = this.router.url.split('/');
     const id: number = Number(linkSplitted[linkSplitted.length - 1]);
+
+    this.routerActive.url.subscribe(url => {
+      this.productService.getItemById(Number(url[url.length - 1])).subscribe(item => {
+        this.currentItem = item as Item;
+        console.log(this.currentItem, "item");
+      })
+    })
 
     this.productService.getItemById(id).subscribe((product) => {
       console.log("Получил текущий объект", product);

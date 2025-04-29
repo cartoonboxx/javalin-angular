@@ -27,7 +27,7 @@ export class ProductService {
     return this.http.delete(`${this.httpSource}products/${id}`);
   }
 
-  public getItemById(id: number) {
+  public getItemById(id: number | string) {
     return this.http.get(`${this.httpSource}products/${id}`);
   }
 

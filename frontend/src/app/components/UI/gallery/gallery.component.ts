@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, SimpleChanges} from '@angular/core';
 import {serverURL} from '../../../global-variable';
 
 interface Image {
@@ -27,7 +27,17 @@ export class GalleryComponent {
     console.log("data in gallery", this.images)
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['images']) {
+      this.collectImages();
+    }
+  }
+
   ngOnInit() {
+    this.collectImages()
+  }
+
+  private collectImages() {
     this.imagesData = this.images.map(item => {
       return {
         thumb: this.serverURL + item,
